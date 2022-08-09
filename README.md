@@ -1,4 +1,4 @@
-# Desafio Solfacil
+# Desafio Solfácil
 
 Esse é um teste focado em design de código e conhecimento em programação funcional. O objetivo é avaliar sua experiênica em escrever código de fácil manutenção e alta coesão.
 
