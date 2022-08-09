@@ -34,6 +34,7 @@ Para nos enviar seu código, você poderá escolher as 2 opções abaixo:
 - Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes.
 - Teste unitários será um diferencial;
 - Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ.
+- Seria interessante se tivéssemos as informações de cidade e Estado de nossos parceiros em nosso banco de dados.
 
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
 
