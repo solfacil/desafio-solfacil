@@ -12,6 +12,8 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 [Baixe aqui um CSV de exemplo](assets/exemplo.csv)
 
+Além do endpoint de atualização em lote, podemos ter também um endpoint para listar os parceiros cadastrados.
+
 ## Tecnologias usadas
 
 Os pré-requisitos para a aplicação:
