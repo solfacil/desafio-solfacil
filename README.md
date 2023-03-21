@@ -26,8 +26,7 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 ## Tecnologias usadas
 
-- Preferencialmente utilizar Elixir como linguagem;
-- O Banco deve ser relacional, de preferência POSTGRESQL.
+- Preferencialmente utilizar Python como linguagem;
 
 ## Dicas
 
@@ -44,7 +43,6 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 Para nos enviar seu código, você poderá escolher as 2 opções abaixo:
 - Fazer um fork desse repositório e nos mandar um pull-request;
-- Enviar o projeto compactado para o e-mail recrutamento@solfacil.com.br.
 
 
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
