@@ -41,8 +41,7 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 ## Envio
 
-Para nos enviar seu código, você poderá escolher as 2 opções abaixo:
-- Fazer um fork desse repositório e nos mandar um pull-request;
+Para nos enviar seu código, faça um fork desse repositório e nos envie um pull-request.
 
 
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
