@@ -2,8 +2,6 @@
 
 from django.db import migrations, models
 
-from api.utils import populate_partners_csv
-
 
 class Migration(migrations.Migration):
 
@@ -27,5 +25,4 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
-        migrations.RunPython(populate_partners_csv),
     ]
