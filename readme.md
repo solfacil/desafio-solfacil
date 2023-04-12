@@ -7,7 +7,7 @@
     - python3 -V
         - Output esperado: ```Python 3.11.2```
         - Caso dê erro e não altere a versão do python, rode o seguinte comando para atualizar o pyenv no path da sua maquina:
-            - ```export PATH="$HOME/.pyenv/versions/3.11.2/bin:$PATH```
+            - ```export PATH="$HOME/.pyenv/versions/3.11.2/bin:$PATH"```
 
 - PostgreSQL instalado na sua maquina
     - Necessário criar um banco de dados com o nome de sua preferencia
