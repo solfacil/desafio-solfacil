@@ -23,5 +23,7 @@
 - Crie seu arquivo .env no root do projeto
   - Os campos necessários para criar o .env estão no env-example
 
-- Agora tente rodar o python manage.py runserver
+- Agora rode as migrations com: ```python manage.py migrate````
+
+- Agora pode rodar o servidor com: ```python manage.py runserver```
  
