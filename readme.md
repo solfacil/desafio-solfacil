@@ -19,7 +19,7 @@
     - python3 -m venv <nome_do_seu_ambiente>
     - source .venv/bin/activate
     - pip install -U pip
-    - pip install -m requirements.txt
+    - pip install -r requirements.txt
 - Crie seu arquivo .env no root do projeto
   - Os campos necessários para criar o .env estão no env-example
 
