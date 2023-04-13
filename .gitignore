@@ -2,3 +2,5 @@
 .vscode
 .env
 .idea
+.data
+.data/

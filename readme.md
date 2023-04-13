@@ -1,29 +1,11 @@
-## Como rodar aplicação:
-- Python na versão 3.11.2
-    - Caso não saiba como alterar versão do python, utilize o pyenv
-    - Instale o pyenv[pyenv](https://github.com/pyenv/pyenv)
-    - pyenv install 3.11.2
-    - pyenv global 3.11.2
-    - python3 -V
-        - Output esperado: ```Python 3.11.2```
-        - Caso dê erro e não altere a versão do python, rode o seguinte comando para atualizar o pyenv no path da sua maquina:
-            - ```export PATH="$HOME/.pyenv/versions/3.11.2/bin:$PATH"```
+# API parceiros solfacil
+Esta é uma API feitas nos padrões rest para podermos cadastrar nossos parceiros no sistema!
 
-- PostgreSQL instalado na sua maquina
-    - Necessário criar um banco de dados com o nome de sua preferencia
-    - Adicionar o nome desse banco e os acessos no .env
+Pode ser tanto cadastrado via endpoint utilizando JSON, como pode ser cadastrado via CSV em noss endpoint. Caso queira ver os nossos endpoints e a documentação via *swagger*, acesse esse texto para saber mais
+[endpoints](docs/doc-endpoints.md).
 
-
-- Crie um ambiente virtual 
-    - Navegue até a root do projeto
-    - python3 -m venv <nome_do_seu_ambiente>
-    - source .venv/bin/activate
-    - pip install -U pip
-    - pip install -r requirements.txt
-- Crie seu arquivo .env no root do projeto
-  - Os campos necessários para criar o .env estão no env-example
-
-- Agora rode as migrations com: ```python manage.py migrate````
-
-- Agora pode rodar o servidor com: ```python manage.py runserver```
- 
+## Sumário
+ - [Como rodar e instalar a aplicação](docs/instalacao.md)
+ - [Configurando pgadmin 4](docs/config-pgadmin4.md)
+ - [Como pegar autenticação](docs/autenticacao.md)
+ - [Documentação dos endpoints](docs/doc-endpoints.md)

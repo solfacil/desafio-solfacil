@@ -1,5 +1,6 @@
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from api.models import Parceiro
@@ -11,6 +12,7 @@ from api.utils import process_and_save_csv_values, validate_fields_partner
 class ParceiroViewSet(viewsets.ModelViewSet):
     queryset = Parceiro.objects.all().order_by('nome_fantasia')
     serializer_class = ParceiroSerializer
+    permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
         return super().list(request, args, kwargs)
