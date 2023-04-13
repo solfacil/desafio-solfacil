@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -10,13 +11,13 @@ from api.utils import process_and_save_csv_values, validate_fields_partner
 
 
 class ParceiroViewSet(viewsets.ModelViewSet):
-    queryset = Parceiro.objects.all().order_by('nome_fantasia')
+    queryset = Parceiro.objects.all().order_by('id')
     serializer_class = ParceiroSerializer
     permission_classes = (IsAuthenticated,)
+    http_method_names = ['get', 'post', 'put', 'delete']
 
     def list(self, request, *args, **kwargs):
         return super().list(request, args, kwargs)
-
 
     def create(self, request, *args, **kwargs):
         try:
@@ -36,8 +37,31 @@ class ParceiroViewSet(viewsets.ModelViewSet):
                 f'Houve um problema ao salvar o parceiro por {e}',
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        
 
+    def update(self, request, *args, **kwargs):
+        try:
+            partner = Parceiro.objects.filter(cnpj=request.data['cnpj']).first()
+            if not partner:
+                return Response({'error': 'Parceiro não encontrado'}, status=status.HTTP_404_NOT_FOUND)
+            validate_error = validate_fields_partner(request.data)
+            if validate_error:
+                return Response({'errors': validate_error}, status=status.HTTP_400_BAD_REQUEST)
+    
+            ParceiroRepository.save_partner(request.data)
 
+            return Response(
+                'Parceiro atualizado com sucesso!',
+                status=status.HTTP_200_OK
+            )
+
+        except Exception as e:
+            return Response(
+                f'Houve um problema ao salvar o parceiro por {e}',
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+    
+    
     @action(detail=False, methods=['post'], url_path='csv-upload')
     def csv_upload(self, request):
         csv_file = request.FILES.get('csv_file')
