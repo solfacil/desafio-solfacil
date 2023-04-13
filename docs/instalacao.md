@@ -30,3 +30,7 @@
 
 - Com o docker up, agora suba as migrations com ``` python manage.py migrate```
 - Após sucesso, rode o ``` python manage.py runserver ```
+
+### Testes unitários
+Eu escrevi alguns testes unitarios, para testa-los rode o comando:
+- ```python manage.py test```
