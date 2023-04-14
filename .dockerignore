@@ -1,0 +1,7 @@
+Dockerfile.dev
+README.md
+assets
+docker-compose.dev.yml
+poetry.lock
+pyproject.toml
+up.dev.sh
