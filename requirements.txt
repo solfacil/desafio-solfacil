@@ -1,0 +1,6 @@
+flask
+flask_sqlalchemy
+psycopg2
+pytest
+sqlalchemy
+requests
