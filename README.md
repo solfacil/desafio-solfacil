@@ -23,6 +23,7 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 - Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
 - Testes unitários e de integração serão um diferencial;
 - Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
+- Interface em HTML
 
 ## Tecnologias usadas
 
