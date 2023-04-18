@@ -43,7 +43,87 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 Para nos enviar seu código, faça um fork desse repositório e nos envie um pull-request.
 
-
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
 
 Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+
+# Como rodar o projeto (Linux)?
+
+**Importante:** Para rodar o projeto é necessário ter instalado o docker e o docker-compose.
+
+Renomei o arquivo `.env.dev.example` para `.env.dev`. No arquivo `.env.dev.example` tem as váriaveis de ambientes necessárias com exemplos de valores preenchidos.
+
+É possível subir o ambiente de dev com apenas um comando, caso o seu sistema operacional tenha suporte para rodar comando de bash:
+
+```
+$ bash up.dev.sh
+```
+
+Se não tiver suporte basta rodar:
+
+```
+$ docker-compose -f docker-compose.dev.yml --env-file .env.dev up -d --build --remove-orphans
+```
+
+**O arquivo Desafio.postman_collection.json contém os endpoints necessário em Postman**
+
+Básicamente são esses:
+
+```
+[GET] {{host}}/api/partner/
+```
+
+```
+[POST] {{host}}/api/partner/upload/
+```
+
+# Como rodar os testes unitários e de integração ?
+
+Para rodar o teste de cobertura é necessário instalar a biblioteca coverage que está no requirements_dev.txt:
+
+- Exemplo usando pip e venv
+
+  [Crie um ambiente virtual e ative-o:](https://docs.python.org/pt-br/3.5/tutorial/venv.html)
+
+  ```
+  pyvenv .env
+  source .env/bin/activate
+  pip install -r requirements.txt
+  ```
+
+- [Com o poetry crie um ambiente virtual e ative-o:](https://python-poetry.org/)
+
+  ```
+  $ poetry shell
+  $ poetry install
+  ```
+
+Para rodar os testes usando o bash script:
+
+```
+$ bash test.sh
+```
+
+Sem o bash script:
+
+```
+python -m unittest discover -v -s . -p "*test*.py"
+```
+
+Ao instalar a a biblioteca coverage:
+
+Rode a cobertura de testes com bash script:
+
+```
+$ bash coverage.sh
+```
+
+Sem o bash script:
+
+```
+$ python -m coverage run -m unittest
+$ python -m coverage report
+$ python -m coverage html
+```
+
+**Importante: para o teste de integração rodar é necessário que o ambiente esteja levantado e rodando**
