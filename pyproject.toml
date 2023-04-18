@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "solfacil-challenge-ph"
+version = "0.1.0"
+description = "This is the solution to the solfacil challenge"
+authors = ["PHRaulino <phraulino@outlook.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "solfacil_challenge_ph"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+commitizen = "^2.42.1"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+black = "^23.3.0"
+pre-commit = "^3.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

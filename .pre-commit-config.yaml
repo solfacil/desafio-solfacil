@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: "stable"
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  - repo: https://github.com/pycqa/flake8
+    rev: ""
+    hooks:
+      - id: flake8
+
+  - repo: https://github.com/pycqa/isort
+    rev: ""
+    hooks:
+      - id: isort
+        name: isort (python)
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: "" # add version here
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+      - id: poetry-export
+        args: ["-f", "requirements.txt", "-o", "requirements.txt"]
