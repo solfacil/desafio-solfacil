@@ -45,6 +45,10 @@ services:
       API_HOST: ${API_HOST}
     ports:
       - "${API_PORT}:${API_PORT}"
+    command:
+      - "/bin/bash"
+      - "-c"
+      - "python3 -m gunicorn -c config.py src:app --preload"
     volumes:
       - .:/src
     networks:
