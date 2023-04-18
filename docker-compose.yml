@@ -18,7 +18,7 @@ services:
   solfacil_db_admin:
     container_name: solfacil_db_admin
     depends_on:
-      - postgres_database
+      - solfacil_db
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
@@ -48,7 +48,7 @@ services:
     command:
       - "/bin/bash"
       - "-c"
-      - "python3 -m gunicorn -c config.py src:app --preload"
+      - "python -m gunicorn -c config.py src.main:app --preload"
     volumes:
       - .:/src
     networks:
