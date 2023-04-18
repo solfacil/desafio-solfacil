@@ -29,6 +29,27 @@ services:
       - "${PGADMIN_PORT}:80"
     networks:
       - solfacil-network
+
+  solfacil_api:
+    container_name: solfacil_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      ENVIRONMENT: "local"
+      SK_DB_USER: ${POSTGRES_USER}
+      SK_DB_PASS: ${POSTGRES_PASS}
+      SK_DB_ENDPOINT: solfacil_db:${POSTGRES_PORT}
+      SK_DB_NAME: ${POSTGRES_DB}
+      API_PORT: ${API_PORT}
+      API_HOST: ${API_HOST}
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    volumes:
+      - .:/src
+    networks:
+      - solfacil-network
+
 networks:
   solfacil-network:
 
