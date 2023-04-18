@@ -12,38 +12,90 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 ## Requisitos
 
-- Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
-- Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação.
+- python 3.10+
+- [poetry](https://python-poetry.org/docs/#installation)
 
-## Bônus
+## Instalando as dependências
 
-- Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
-- Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
-- Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Testes unitários e de integração serão um diferencial;
-- Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
+Com o poetry instalado, execute o comando abaixo, o poetry irá verificar se o sistema atende aos requisitos e instalar 
+as dependências.
 
-## Tecnologias usadas
+```bash
+poetry install
+```
 
-- Preferencialmente utilizar Python como linguagem;
+## Configurando o projeto
 
-## Dicas
+### Variáveis de ambiente
 
-- Aproveite os recursos das ferramentas que você está usando. Diversifique e mostre que você domina cada uma delas;
-- Tente escrever seu código o mais claro e limpo possível. Código deve ser legível assim como qualquer texto dissertativo;
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes;
-- OBS: Não precisa criar um front-end para aplicação.
+A applicação está configurada para aceitar os seguintes arquivos .env: `.env.dev`, `.env.prod`. Cada um deles representa
+um ambiente de execução.
 
-## Objetivo
+O arquivo `.env.dev` é utilizado para executar a aplicação em modo de desenvolvimento, já o `.env.prod` é utilizado para
+produção.
 
-- O objetivo é avaliar sua experiência em escrever código de fácil manutenção e alta coesão.
+A aplicação sempre irá preferir o arquivo `.env.prod`.
 
-## Envio
+Um exemplo de arquivo `.env` pode ser encontrado em `.env.example`.
 
-Para nos enviar seu código, faça um fork desse repositório e nos envie um pull-request.
+Caso nenhum arquivo `.env` seja encontrado, a aplicação irá utilizar as variáveis de ambiente do sistema e caso não encontre
+nenhuma delas, irá utilizar os valores padrões.
 
+### Migrations
+Para executar as migrations, execute o comando abaixo:
 
-Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
+```bash
+poetry shell
+python manage.py migrate
+```
 
-Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+## Iniciando django em modo de desenvolvimento
+
+```bash
+poetry shell
+python manage.py runserver
+```
+
+## Executando os testes
+
+```bash
+poetry shell
+python manage.py test
+```
+
+## Executando o lint
+
+```bash
+poetry shell
+black --config ./pyproject.toml --check .
+flake8
+```
+
+## Executando em modo de produção
+
+```bash
+poetry shell
+gunicorn --bind :8000 desafio_solfacil.wsgi:application --workers 3
+```
+
+## Docker
+
+O projeto está configurado para rodar em um container docker. Para executar o projeto em um container docker.
+
+### Executando em modo de desenvolvimento
+
+```bash
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+### Executando em modo de produção
+
+```bash
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+## Bibliotecas utilizadas
+- [Django](https://www.djangoproject.com/)
+- [Django Rest Framework](https://www.django-rest-framework.org/)
+- [Django Phonenumbers Field](https://django-phonenumber-field.readthedocs.io/en/latest/)
+- [Drf-yasg](https://drf-yasg.readthedocs.io/en/stable/)
