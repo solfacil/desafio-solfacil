@@ -15,8 +15,23 @@ services:
     networks:
       - solfacil-network
 
+  solfacil_db_admin:
+    container_name: solfacil_db_admin
+    depends_on:
+      - postgres_database
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASS}
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT}:80"
+    networks:
+      - solfacil-network
 networks:
   solfacil-network:
 
 volumes:
   pgdata:
+  pgadmin:
