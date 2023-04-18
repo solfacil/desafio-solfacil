@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import List
 
 from .partner_dto import PartnerDto
 
@@ -12,12 +12,6 @@ class PartnerStorage(ABC):
         """Case"""
 
         raise Exception("Should implement method: save or update")
-
-    @abstractmethod
-    def get_partner_by_param(self, param: Dict["str", Any]) -> PartnerDto | None:
-        """Case"""
-
-        raise Exception("Should implement method: get")
 
     @abstractmethod
     def get_all_partners(self) -> List[PartnerDto]:

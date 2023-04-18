@@ -54,10 +54,6 @@ class PartnerRepository(PartnerStorage):
             partner = self.__partner_dto_to_model(partner_dto)
             partner.save()
 
-    def get_partner_by_param(self, param) -> PartnerDto:
-        partner = Partner.objects.filter(**param)
-        return self.__model_to_dto(partner.first()) if len(partner) > 0 else None
-
     def get_all_partners(self) -> List[PartnerDto]:
         partners = Partner.objects.all()
         partners_dto: List[PartnerDto] = []
