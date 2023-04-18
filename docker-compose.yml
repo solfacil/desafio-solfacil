@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  solfacil_db:
+    container_name: solfacil_db
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASS}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - solfacil-network
+
+networks:
+  solfacil-network:
+
+volumes:
+  pgdata:
