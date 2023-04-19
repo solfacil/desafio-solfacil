@@ -1,8 +1,10 @@
 from fastapi import APIRouter
 
+from src.database import schemas
+
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=list[schemas.SchemaParceiro])
 def get_parceiros():
-    return {"message": "Rota Funcionando!"}
+    return []
