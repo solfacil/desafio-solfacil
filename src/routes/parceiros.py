@@ -1,14 +1,22 @@
-from fastapi import APIRouter, Depends, status
+from typing import List
+
+from fastapi import APIRouter, Depends, Response, status
+from fastapi.encoders import jsonable_encoder
 
 from src.database import get_db, schemas
-from src.database.crud import criar_parceiro
+from src.database.crud import consultar_parceiros, criar_parceiro
+from src.utils import response_exception
 
 router = APIRouter()
 
 
-@router.get("/", response_model=list[schemas.SchemaParceiro])
-def consultas_parceiros():
-    return []
+@router.get("/", response_model=List[schemas.SchemaParceiro])
+def get_parceiros(db=Depends(get_db)):
+    try:
+        parceiros = consultar_parceiros(db)
+        return jsonable_encoder(parceiros)
+    except Exception as e:
+        return Response(content=response_exception(*e.args))
 
 
 @router.post(
@@ -16,11 +24,10 @@ def consultas_parceiros():
     response_model=schemas.SchemaParceiro,
     status_code=status.HTTP_201_CREATED,
 )
-def novo_parceiro(parceiro: schemas.SchemaCriacaoParceiro, db=Depends(get_db)):
-    novo_parceiro = criar_parceiro(db, parceiro)
-    return {
-        "id_parceiro": novo_parceiro.id_parceiro,
-        "cnpj": novo_parceiro.cnpj,
-        "cep": novo_parceiro.cep,
-        "data_atualizacao": novo_parceiro.data_atualizacao,
-    }
+def post_parceiro(parceiro: schemas.SchemaCriacaoParceiro, db=Depends(get_db)):
+    try:
+        novo_parceiro = criar_parceiro(db, parceiro)
+        print(novo_parceiro)
+        return jsonable_encoder(novo_parceiro)
+    except Exception as e:
+        Response(content=response_exception(*e.args))

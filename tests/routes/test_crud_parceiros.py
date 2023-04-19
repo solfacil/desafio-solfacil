@@ -10,6 +10,14 @@ def test_get_parceiros_deve_retornar_um_array_vazio_quando_nao_houver_dados(
     assert response.json() == []
 
 
+def test_get_parceiros_deve_retornar_um_array_quando_houver_dados(
+    client, parceiros_teste
+):
+    response = client.get("/parceiros")
+    assert response.status_code == 200
+    assert len(response.json()) != 0
+
+
 def test_post_parceiros_deve_enviar_o_payload_do_e_salvar_os_dados_no_banco(
     client,
 ):

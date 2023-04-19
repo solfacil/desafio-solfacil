@@ -19,3 +19,11 @@ def test_ao_consultar_os_parceiros_cadastrados_deve_retornar_testers(
     parceiros = consultar_parceiros(db)
 
     assert len(parceiros) == 3
+
+
+def test_ao_consultar_deve_ser_possivel_limitar_e_paginar_a_resposta(
+    client, db, parceiros_teste
+):
+    parceiros = consultar_parceiros(db, 1, 2)
+
+    assert len(parceiros) == 2
