@@ -9,7 +9,7 @@ __pycache__/
 
 # C extensions
 *.so
-
+alembic/versions/*.py
 # Distribution / packaging
 .Python
 build/

@@ -16,9 +16,12 @@ RUN curl -O https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz && \
 
 RUN ln -s /usr/local/bin/python3.10 /usr/local/bin/python
 
-COPY . /src
+COPY . /app
 
-WORKDIR /src
+WORKDIR /app
 
 RUN python -m pip install --upgrade pip
 RUN python -m pip install --user -r requirements.txt
+RUN chmod +x init_db.sh
+
+CMD ./init_db.sh && python -m gunicorn -c config.py src.main:app --preload

@@ -13,6 +13,8 @@ fastapi = {extras = ["all"], version = "^0.95.1"}
 gunicorn = "^20.1.0"
 sqlalchemy = "^2.0.9"
 psycopg2-binary = "^2.9.6"
+alembic = "^1.10.3"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.group.dev.dependencies]

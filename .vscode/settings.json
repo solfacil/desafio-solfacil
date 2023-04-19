@@ -4,9 +4,9 @@
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
     "--ignore",
-    "E305",
+    "E305, E999",
     "--exclude",
-    ".git,__pycache__"
+    ".git,__pycache__,alembic/*"
   ],
   "editor.rulers": [79, 120],
   "files.insertFinalNewline": true,
@@ -18,5 +18,8 @@
   },
   "python.testing.pytestArgs": ["tests"],
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true
+  "python.testing.pytestEnabled": true,
+  "code-runner.executorMap": {
+    "python": "/Users/phraulino/Library/Caches/pypoetry/virtualenvs/solfacil-challenge-ph-7ksuRwke-py3.10/bin/python -u"
+  }
 }

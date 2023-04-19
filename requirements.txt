@@ -1,3 +1,6 @@
+alembic==1.10.3 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:32a69b13a613aeb7e8093f242da60eff9daed13c0df02fff279c1b06c32965d2 \
+    --hash=sha256:b2e0a6cfd3a8ce936a1168320bcbe94aefa3f4463cd773a968a55071beb3cd37
 anyio==3.6.2 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:25ea0d673ae30af41a0c442f81cf3b38c7e79fdc7b60335a4c14e05eb0947421 \
     --hash=sha256:fbbe32bd270d2a2ef3ed1c5d45041250284e31fc0a4df4a5a6071842051a51e3
@@ -143,6 +146,9 @@ itsdangerous==2.1.2 ; python_version >= "3.10" and python_version < "4.0" \
 jinja2==3.1.2 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852 \
     --hash=sha256:6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61
+mako==1.2.4 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:c97c79c018b9165ac9922ae4f32da095ffd3c4e6872b45eded42926deea46818 \
+    --hash=sha256:d60a3903dc3bb01a18ad6a89cdbe2e4eadc69c0bc8ef1e3773ba53d44c3f7a34
 markupsafe==2.1.2 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:0576fe974b40a400449768941d5d0858cc624e3249dfd1e0c33674e5c7ca7aed \
     --hash=sha256:085fd3201e7b12809f9e6e9bc1e5c96a368c8523fad5afb02afe3c051ae4afcc \
