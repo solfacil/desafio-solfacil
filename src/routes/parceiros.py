@@ -11,9 +11,9 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[schemas.SchemaParceiro])
-def get_parceiros(db=Depends(get_db)):
+def get_parceiros(skip: int = 0, limit: int = 10, db=Depends(get_db)):
     try:
-        parceiros = consultar_parceiros(db)
+        parceiros = consultar_parceiros(db, skip, limit)
         return jsonable_encoder(parceiros)
     except Exception as e:
         return Response(content=response_exception(*e.args))

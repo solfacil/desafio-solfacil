@@ -26,3 +26,14 @@ repos:
       - id: poetry-lock
       - id: poetry-export
         args: ["-f", "requirements.txt", "-o", "requirements.txt"]
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        stages: [commit]
+        language: system
+        entry: pytest -s -v .
+        types: [python]
+        pass_filenames: false
+        always_run: true

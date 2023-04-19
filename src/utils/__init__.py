@@ -12,7 +12,7 @@ def response_exception(e):
             "status_code: {}, message: {}".format(e.status_code, e.detail)
         )
         raise e
-    elif "unique constraint" in str(e):
+    elif "unique constraint" in str(e).lower():
         handle_unique_constraint_error(e)
     else:
         logger.error(

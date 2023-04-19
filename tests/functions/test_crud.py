@@ -1,8 +1,14 @@
-from src.database.crud import consultar_parceiros, criar_parceiro
+import pytest
+
+from src.database.crud import (
+    consultar_parceiro_cnpj,
+    consultar_parceiros,
+    criar_parceiro,
+)
 from src.database.schemas import SchemaCriacaoParceiro
 
 
-def test_ao_criar_um_parceiro_deve_retornar_o_uuid(client, db):
+def test_novo_usuario_gera_uuid(client, db):
     cnpj_test = "kdsaldjlsa"
     cep_test = "sadasadsadsdsa"
     parceiro = SchemaCriacaoParceiro(**{"cnpj": cnpj_test, "cep": cep_test})
@@ -13,7 +19,7 @@ def test_ao_criar_um_parceiro_deve_retornar_o_uuid(client, db):
     assert novo_parceiro.cnpj == cnpj_test
 
 
-def test_ao_consultar_os_parceiros_cadastrados_deve_retornar_testers(
+def test_consultar_parceiros_cadastrados_retorna_parceiros_teste(
     client, db, parceiros_teste
 ):
     parceiros = consultar_parceiros(db)
@@ -21,9 +27,23 @@ def test_ao_consultar_os_parceiros_cadastrados_deve_retornar_testers(
     assert len(parceiros) == 3
 
 
-def test_ao_consultar_deve_ser_possivel_limitar_e_paginar_a_resposta(
-    client, db, parceiros_teste
-):
+def test_consultar_limitar_e_paginar_resposta(client, db, parceiros_teste):
     parceiros = consultar_parceiros(db, 1, 2)
 
     assert len(parceiros) == 2
+
+
+def test_deve_ser_possivel_consultar_um_parceiro_pelo_cnpj(
+    client, db, parceiros_teste
+):
+    parceiro = consultar_parceiro_cnpj(db, "1234")
+
+    assert parceiro
+    assert parceiro.cnpj == "1234"
+
+
+@pytest.mark.xfail(raises=Exception)
+def test_deve_retornar_none_quando_o_usuario_nao_existe(client, db):
+    parceiro = consultar_parceiro_cnpj(db, "1234")
+
+    assert parceiro

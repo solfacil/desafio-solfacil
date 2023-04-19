@@ -1,24 +1,22 @@
+from platform import python_version
+
 from fastapi import FastAPI
 from starlette.responses import FileResponse
 
-# from src.database import Base, engine
 from src.routes import parceiros
 
 app = FastAPI()
 favicon_path = "assets/favicon.ico"
 
-# Base.metadata.drop_all(bind=engine)
-# Base.metadata.create_all(bind=engine)
-
 
 @app.get("/favicon.ico")
 async def favicon():
-    return FileResponse(favicon_path)
+    return FileResponse(favicon_path)  # pragma: no cover
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"python_version": python_version()}
 
 
 app.include_router(
