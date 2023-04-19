@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from starlette.responses import FileResponse
 
 from src.database import SessionLocal
+from src.routes import parceiros
 
 app = FastAPI()
 favicon_path = "assets/favicon.ico"
@@ -23,3 +24,8 @@ async def favicon():
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+app.include_router(
+    parceiros.router, tags=["Crud Parceiros"], prefix="/parceiros"
+)
