@@ -13,3 +13,12 @@ class SchemaParceiro(BaseModel):
     email: Union[str, None]
     cep: str
     data_atualizacao: datetime
+
+
+class SchemaCriacaoParceiro(BaseModel):
+    cnpj: str
+    razao_social: Union[str, None]
+    nome_fantasia: Union[str, None]
+    telefone: Union[str, None]
+    email: Union[str, None]
+    cep: str

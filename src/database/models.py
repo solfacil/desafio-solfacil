@@ -6,9 +6,13 @@ from sqlalchemy import Column, DateTime, String
 from src.database import Base
 
 
+def get_id():
+    return str(uuid.uuid4())
+
+
 class Parceiro(Base):
     __tablename__ = "tb_parceiros"
-    id_parceiro = Column(String, primary_key=True, default=str(uuid.uuid4()))
+    id_parceiro = Column(String, primary_key=True, default=get_id)
     cnpj = Column(String(255), unique=True, nullable=False)
     razao_social = Column(String(255))
     nome_fantasia = Column(String(255))
