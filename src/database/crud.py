@@ -8,13 +8,6 @@ def consultar_parceiros(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Parceiro).offset(skip).limit(limit).all()
 
 
-def consultar_parceiro_cnpj(db: Session, cnpj: str):
-    parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
-    if parceiro is None:
-        raise Exception("Not found")
-    return parceiro
-
-
 def criar_parceiro(db: Session, parceiro: schemas.SchemaJsonParceiro):
     novo_parceiro = Parceiro(**parceiro.dict())
     db.add(novo_parceiro)

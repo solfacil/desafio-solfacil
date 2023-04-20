@@ -35,22 +35,6 @@ def test_deve_retornar_lista_filtrada_quando_passar_query_params(
     assert len(response.json()) == 1
 
 
-def test_consulta_parceiro_por_cnpj(client, parceiros_teste):
-    response = client.get("/parceiros/1234")
-    parceiro = response.json()
-    assert response.status_code == status.HTTP_200_OK
-    assert parceiro["cnpj"] == "1234"
-    assert parceiro["cep"] == "sadsa"
-
-
-def test_consulta_cnpj_inexistente_retorna_404(client, parceiros_teste):
-    response = client.get("/parceiros/12345")
-    assert response.status_code == status.HTTP_404_NOT_FOUND
-    assert response.json() == {
-        "detail": {"message": "Este parceiro não existe na tabela"}
-    }
-
-
 def test_ao_tentar_conectar_com_banco_deve_retornar_erro_interno_sem_conexao():
     client = TestClient(app)
 
@@ -107,7 +91,7 @@ def test_atualizar_informacoes_parceiro(client, parceiros_teste):
     cnpj_test = "1234"
     cep_test = "sadasadsadsdsa"
 
-    response = client.get("/parceiros/1234")
+    response = client.get("/buscar/1234")
     parceiro = response.json()
 
     response = client.put(

@@ -1,9 +1,6 @@
-from src.database.crud import (
-    consultar_parceiro_cnpj,
-    consultar_parceiros,
-    criar_parceiro,
-)
+from src.database.crud import consultar_parceiros, criar_parceiro
 from src.database.schemas import SchemaJsonParceiro
+from src.database.search import consultar_parceiro_cnpj
 
 
 def test_novo_usuario_gera_uuid(client, db):

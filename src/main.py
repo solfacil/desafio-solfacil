@@ -3,7 +3,7 @@ from platform import python_version
 from fastapi import FastAPI
 from starlette.responses import FileResponse
 
-from src.routes import parceiros
+from src.routes import crud, search
 
 app = FastAPI()
 favicon_path = "assets/favicon.ico"
@@ -19,6 +19,7 @@ async def root():
     return {"python_version": python_version()}
 
 
+app.include_router(crud.router, tags=["Crud Parceiros"], prefix="/parceiros")
 app.include_router(
-    parceiros.router, tags=["Crud Parceiros"], prefix="/parceiros"
+    search.router, tags=["Pesquisa Parceiros"], prefix="/buscar"
 )
