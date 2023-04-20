@@ -14,6 +14,8 @@ def response_exception(e):
         raise e
     elif "unique constraint" in str(e).lower():
         handle_unique_constraint_error(e)
+    elif "not found" in str(e).lower():
+        handle_not_found_error(e)
     else:
         logger.error(
             "status_code: {}, message: {}".format(
@@ -35,4 +37,16 @@ def handle_unique_constraint_error(e):
     raise HTTPException(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         detail={"message": "Este parceiro ja existe na tabela"},
+    )
+
+
+def handle_not_found_error(e):
+    logger.error(
+        "status_code: {}, message: {}".format(
+            status.HTTP_404_NOT_FOUND, str(e)
+        )
+    )
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail={"message": "Este parceiro não existe na tabela"},
     )

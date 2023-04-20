@@ -9,12 +9,30 @@ def consultar_parceiros(db: Session, skip: int = 0, limit: int = 100):
 
 
 def consultar_parceiro_cnpj(db: Session, cnpj: str):
-    return db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
+    parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
+    if parceiro is None:
+        raise Exception("Not found")
+    return parceiro
 
 
-def criar_parceiro(db: Session, parceiro: schemas.SchemaCriacaoParceiro):
+def criar_parceiro(db: Session, parceiro: schemas.SchemaJsonParceiro):
     novo_parceiro = Parceiro(**parceiro.dict())
     db.add(novo_parceiro)
     db.commit()
     db.refresh(novo_parceiro)
     return novo_parceiro
+
+
+def atualizar_parceiro(
+    db: Session, cnpj, parceiro: schemas.SchemaJsonParceiro
+):
+    db_parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
+    if not db_parceiro:
+        raise Exception("Not Found")
+    for field, value in parceiro.dict(exclude_unset=True).items():
+        setattr(db_parceiro, field, value)
+    db.add(db_parceiro)
+    db.commit()
+    db.refresh(db_parceiro)
+
+    return db_parceiro

@@ -25,6 +25,15 @@ def test_se_receber_de_violacao_de_constraint_deve_retornar_422():
     }
 
 
+def test_se_consultar_um_parceiro_retorna_404_se_nao_existir():
+    with pytest.raises(HTTPException) as exc_info:
+        response_exception("Not Found")
+    assert exc_info.value.status_code == status.HTTP_404_NOT_FOUND
+    assert exc_info.value.detail == {
+        "message": "Este parceiro não existe na tabela"
+    }
+
+
 def test_se_receber_um_httpexception_deve_retornalo_como_erro():
     error = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

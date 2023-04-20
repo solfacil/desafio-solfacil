@@ -4,7 +4,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class SchemaCriacaoParceiro(BaseModel):
+class SchemaJsonParceiro(BaseModel):
     cnpj: str
     razao_social: Optional[str]
     nome_fantasia: Optional[str]
@@ -13,7 +13,7 @@ class SchemaCriacaoParceiro(BaseModel):
     cep: str
 
 
-class SchemaParceiro(SchemaCriacaoParceiro):
+class SchemaParceiro(SchemaJsonParceiro):
     id_parceiro: str
     data_atualizacao: datetime
 

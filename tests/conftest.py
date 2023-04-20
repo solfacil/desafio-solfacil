@@ -43,8 +43,8 @@ def parceiros_teste(db, client):
     parceiros = [
         {"cnpj": "1234", "cep": "sadsa"},
         {"cnpj": "5678", "cep": "sadsa"},
-        {"cnpj": "9101", "cep": "asdsa"},
+        {"cnpj": "9101", "cep": "sadsa"},
     ]
 
     for parceiro in parceiros:
-        crud.criar_parceiro(db, schemas.SchemaCriacaoParceiro(**parceiro))
+        crud.criar_parceiro(db, schemas.SchemaJsonParceiro(**parceiro))

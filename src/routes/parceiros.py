@@ -4,7 +4,12 @@ from fastapi import APIRouter, Depends, Response, status
 from fastapi.encoders import jsonable_encoder
 
 from src.database import get_db, schemas
-from src.database.crud import consultar_parceiros, criar_parceiro
+from src.database.crud import (
+    atualizar_parceiro,
+    consultar_parceiro_cnpj,
+    consultar_parceiros,
+    criar_parceiro,
+)
 from src.utils import response_exception
 
 router = APIRouter()
@@ -19,15 +24,35 @@ def get_parceiros(skip: int = 0, limit: int = 10, db=Depends(get_db)):
         return Response(content=response_exception(*e.args))
 
 
+@router.get("/{cnpj}", response_model=schemas.SchemaParceiro)
+def get_parceiro(cnpj: str, db=Depends(get_db)):
+    try:
+        parceiro = consultar_parceiro_cnpj(db, cnpj)
+        return jsonable_encoder(parceiro)
+    except Exception as e:
+        return Response(content=response_exception(*e.args))
+
+
 @router.post(
     "/",
     response_model=schemas.SchemaParceiro,
     status_code=status.HTTP_201_CREATED,
 )
-def post_parceiro(parceiro: schemas.SchemaCriacaoParceiro, db=Depends(get_db)):
+def post_parceiro(parceiro: schemas.SchemaJsonParceiro, db=Depends(get_db)):
     try:
         novo_parceiro = criar_parceiro(db, parceiro)
         print(novo_parceiro)
         return jsonable_encoder(novo_parceiro)
+    except Exception as e:
+        Response(content=response_exception(*e.args))
+
+
+@router.put("/{cnpj}")
+def put_parceiro(
+    cnpj: str, parceiro: schemas.SchemaJsonParceiro, db=Depends(get_db)
+):
+    try:
+        db_parceiro = atualizar_parceiro(db, cnpj, parceiro)
+        return jsonable_encoder(db_parceiro)
     except Exception as e:
         Response(content=response_exception(*e.args))
