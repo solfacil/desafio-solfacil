@@ -14,16 +14,17 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 - Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
 - Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação.
+- Documentação de como rodar aplicação;
+- Testes unitários e/ou de integração.
 
 ## Bônus
 
 - Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
 - Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
 - Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Testes unitários e de integração serão um diferencial;
 - Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
 - Interface em HTML
+- Documentação dinamica (Swagger/Openapi)
 
 ## Tecnologias usadas
 
