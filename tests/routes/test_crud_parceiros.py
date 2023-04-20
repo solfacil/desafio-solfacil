@@ -133,3 +133,13 @@ def test_atualizacao_de_parceiro_retorna_404_se_nao_existir(
     assert response.json() == {
         "detail": {"message": "Este parceiro não existe na tabela"}
     }
+
+
+def test_exclusao_de_parceiro(client, parceiros_teste):
+    response = client.delete("/parceiros/1234")
+    assert response.status_code == status.HTTP_204_NO_CONTENT
+
+
+def test_exclusao_de_parceiro_inexistente(client, parceiros_teste):
+    response = client.delete("/parceiros/12345")
+    assert response.status_code == status.HTTP_404_NOT_FOUND

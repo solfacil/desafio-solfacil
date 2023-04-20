@@ -36,3 +36,13 @@ def atualizar_parceiro(
     db.refresh(db_parceiro)
 
     return db_parceiro
+
+
+def deletar_parceiro(db: Session, cnpj):
+    db_parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
+    if not db_parceiro:
+        raise Exception("Not Found")
+    db.delete(db_parceiro)
+    db.commit()
+
+    return db_parceiro

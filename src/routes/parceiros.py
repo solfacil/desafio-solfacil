@@ -9,6 +9,7 @@ from src.database.crud import (
     consultar_parceiro_cnpj,
     consultar_parceiros,
     criar_parceiro,
+    deletar_parceiro,
 )
 from src.utils import response_exception
 
@@ -47,12 +48,24 @@ def post_parceiro(parceiro: schemas.SchemaJsonParceiro, db=Depends(get_db)):
         Response(content=response_exception(*e.args))
 
 
-@router.put("/{cnpj}")
+@router.put(
+    "/{cnpj}",
+    response_model=schemas.SchemaParceiro,
+    status_code=status.HTTP_200_OK,
+)
 def put_parceiro(
     cnpj: str, parceiro: schemas.SchemaJsonParceiro, db=Depends(get_db)
 ):
     try:
         db_parceiro = atualizar_parceiro(db, cnpj, parceiro)
         return jsonable_encoder(db_parceiro)
+    except Exception as e:
+        Response(content=response_exception(*e.args))
+
+
+@router.delete("/{cnpj}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_parceiro(cnpj: str, db=Depends(get_db)):
+    try:
+        deletar_parceiro(db, cnpj)
     except Exception as e:
         Response(content=response_exception(*e.args))
