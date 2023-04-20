@@ -3,7 +3,7 @@ from unittest.mock import Mock
 import pytest
 from fastapi import HTTPException, status
 
-from src.utils import response_exception
+from src.utils.exceptions import response_exception
 
 
 def test_se_receber_um_erro_sem_tratativa_deve_retornar_um_500():

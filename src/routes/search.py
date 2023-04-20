@@ -1,12 +1,11 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
-from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from src.database import get_db, schemas
 from src.database.search import consultar_parceiro_cnpj, pesquisar_parceiro
-from src.utils import response_exception
+from src.utils.exceptions import response_exception
 
 router = APIRouter()
 
@@ -15,7 +14,7 @@ router = APIRouter()
 def buscar_cnpj(cnpj: str, db: Session = Depends(get_db)):
     try:
         parceiro = consultar_parceiro_cnpj(db, cnpj)
-        return jsonable_encoder(parceiro)
+        return parceiro.serialize()
     except Exception as e:
         return Response(content=response_exception(*e.args))
 
@@ -45,6 +44,6 @@ def pesquisa_parceiros(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail={"message": mensagem},
             )
-        return jsonable_encoder(parceiros)
+        return [p.serialize() for p in parceiros]
     except Exception as e:
         return Response(content=response_exception(e))

@@ -3,9 +3,9 @@ from src.database.schemas import SchemaJsonParceiro
 from src.database.search import consultar_parceiro_cnpj
 
 
-def test_novo_usuario_gera_uuid(client, db):
-    cnpj_test = "kdsaldjlsa"
-    cep_test = "sadasadsadsdsa"
+def test_novo_usuario_gera_uuid(client, db, mock_cep_response):
+    cnpj_test = "84529322000112"
+    cep_test = "01156325"
     parceiro = SchemaJsonParceiro(**{"cnpj": cnpj_test, "cep": cep_test})
 
     novo_parceiro = criar_parceiro(db, parceiro)
@@ -31,7 +31,7 @@ def test_consultar_limitar_e_paginar_resposta(client, db, parceiros_teste):
 def test_deve_ser_possivel_consultar_um_parceiro_pelo_cnpj(
     client, db, parceiros_teste
 ):
-    parceiro = consultar_parceiro_cnpj(db, "1234")
+    parceiro = consultar_parceiro_cnpj(db, "69971725000123")
 
     assert parceiro
-    assert parceiro.cnpj == "1234"
+    assert parceiro.cnpj == "69971725000123"

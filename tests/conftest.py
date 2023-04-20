@@ -38,12 +38,45 @@ def client(db) -> TestClient:
     Base.metadata.drop_all(bind=engine)
 
 
+@pytest.fixture
+def mock_cep_response(requests_mock):
+    url = "https://viacep.com.br/ws/01156325/json/"
+    json = {
+        "cep": "01156-325",
+        "logradouro": "Rua Patativa da Santa Maria",
+        "complemento": "",
+        "bairro": "Colônia Dona Luíza",
+        "localidade": "Ponta Grossa",
+        "uf": "PR",
+        "ibge": "4119905",
+        "gia": "",
+        "ddd": "42",
+        "siafi": "7777",
+    }
+
+    requests_mock.get(url, status_code=200, json=json)
+    return url, json
+
+
+@pytest.fixture
+def mock_cep_response_error(requests_mock):
+    url = "https://viacep.com.br/ws/01156325/json/"
+    json = {"erro": True}
+
+    requests_mock.get(url, status_code=200, json=json)
+    return url, json
+
+
 @pytest.fixture(scope="function")
-def parceiros_teste(db, client):
+def parceiros_teste(db, client, mock_cep_response):
     parceiros = [
-        {"cnpj": "1234", "cep": "sadsa"},
-        {"cnpj": "5678", "cep": "sadsa"},
-        {"cnpj": "9101", "cep": "sadsa"},
+        {"cnpj": "32402779000168", "cep": "01156325"},
+        {"cnpj": "16470954000106", "cep": "01156325"},
+        {
+            "cnpj": "69971725000123",
+            "cep": "01156325",
+            "email": "empresa@empresa.com",
+        },
     ]
 
     for parceiro in parceiros:

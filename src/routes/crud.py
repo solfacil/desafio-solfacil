@@ -1,7 +1,6 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, Response, status
-from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from src.database import get_db, schemas
@@ -11,7 +10,7 @@ from src.database.crud import (
     criar_parceiro,
     deletar_parceiro,
 )
-from src.utils import response_exception
+from src.utils.exceptions import response_exception
 
 router = APIRouter()
 
@@ -22,7 +21,7 @@ def get_parceiros(
 ):
     try:
         parceiros = consultar_parceiros(db, skip, limit)
-        return jsonable_encoder(parceiros)
+        return [p.serialize() for p in parceiros]
     except Exception as e:
         return Response(content=response_exception(*e.args))
 
@@ -37,8 +36,7 @@ def post_parceiro(
 ):
     try:
         novo_parceiro = criar_parceiro(db, parceiro)
-        print(novo_parceiro)
-        return jsonable_encoder(novo_parceiro)
+        return novo_parceiro.serialize()
     except Exception as e:
         Response(content=response_exception(*e.args))
 
@@ -49,12 +47,12 @@ def post_parceiro(
 )
 def put_parceiro(
     cnpj: str,
-    parceiro: schemas.SchemaJsonParceiro,
+    parceiro: schemas.SchemaUpdateParceiro,
     db: Session = Depends(get_db),
 ):
     try:
         db_parceiro = atualizar_parceiro(db, cnpj, parceiro)
-        return jsonable_encoder(db_parceiro)
+        return db_parceiro.serialize()
     except Exception as e:
         Response(content=response_exception(*e.args))
 
