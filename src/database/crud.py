@@ -5,11 +5,11 @@ from src.database.models import Parceiro
 from src.utils.busca_cep import verifica_cep
 
 
-def consultar_parceiros(db: Session, skip: int = 0, limit: int = 100):
+def list_partners(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Parceiro).offset(skip).limit(limit).all()
 
 
-def criar_parceiro(db: Session, parceiro: schemas.SchemaJsonParceiro):
+def create_partner(db: Session, parceiro: schemas.SchemaJsonParceiro):
     novo_parceiro = Parceiro(**parceiro.dict())
     if verifica_cep(db, novo_parceiro.cep):
         db.add(novo_parceiro)
@@ -20,9 +20,7 @@ def criar_parceiro(db: Session, parceiro: schemas.SchemaJsonParceiro):
     return novo_parceiro
 
 
-def atualizar_parceiro(
-    db: Session, cnpj, parceiro: schemas.SchemaJsonParceiro
-):
+def update_partner(db: Session, cnpj, parceiro: schemas.SchemaJsonParceiro):
     db_parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
     if not db_parceiro:
         raise Exception("Not Found")
@@ -37,7 +35,7 @@ def atualizar_parceiro(
     return db_parceiro
 
 
-def deletar_parceiro(db: Session, cnpj):
+def delete_partner(db: Session, cnpj):
     db_parceiro = db.query(Parceiro).filter(Parceiro.cnpj == cnpj).first()
     if not db_parceiro:
         raise Exception("Not Found")

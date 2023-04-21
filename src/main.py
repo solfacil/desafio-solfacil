@@ -9,12 +9,12 @@ app = FastAPI()
 favicon_path = "assets/favicon.ico"
 
 
-@app.get("/favicon.ico")
+@app.get("/favicon.ico", tags=["Padrões"])
 async def favicon():
     return FileResponse(favicon_path)  # pragma: no cover
 
 
-@app.get("/")
+@app.get("/", tags=["Padrões"])
 async def root():
     return {"python_version": python_version()}
 

@@ -6,8 +6,8 @@ def test_endpoint_com_csv(client):
         "/upload/parceiros",
         files={
             "file": (
-                "assets/exemplo.csv",
-                open("assets/exemplo.csv", "rb"),
+                "massa_de_testes.csv",
+                open("tests/assets/massa_de_testes.csv", "rb"),
                 "text/csv",
             )
         },
@@ -20,8 +20,8 @@ def test_endpoint_com_csv_errado(client):
         "/upload/parceiros",
         files={
             "file": (
-                "assets/exemplo.csv",
-                open("assets/exemplo errado.csv", "rb"),
+                "formato_errado.csv",
+                open("tests/assets/formato_errado.csv", "rb"),
                 "text/csv",
             )
         },
@@ -39,15 +39,26 @@ def test_endpoint_com_csv_para_atualizacao(
     client, parceiros_teste, requests_mock
 ):
     url = "https://viacep.com.br/ws/69314690/json/"
-    json = {"erro": True}
+    json = {
+        "cep": "01156-325",
+        "logradouro": "Rua Patativa da Santa Maria",
+        "complemento": "",
+        "bairro": "Colônia Dona Luíza",
+        "localidade": "Ponta Grossa",
+        "uf": "PR",
+        "ibge": "4119905",
+        "gia": "",
+        "ddd": "42",
+        "siafi": "7777",
+    }
 
     requests_mock.get(url, status_code=200, json=json)
     response = client.post(
         "/upload/parceiros",
         files={
             "file": (
-                "assets/tests.csv",
-                open("assets/tests.csv", "rb"),
+                "parceiro_existente.csv",
+                open("tests/assets/parceiro_existente.csv", "rb"),
                 "text/csv",
             )
         },
@@ -65,8 +76,8 @@ def test_endpoint_com_csv_e_cep_errado(client, parceiros_teste, requests_mock):
         "/upload/parceiros",
         files={
             "file": (
-                "assets/tests.csv",
-                open("assets/tests.csv", "rb"),
+                "parceiro_existente.csv",
+                open("tests/assets/parceiro_existente.csv", "rb"),
                 "text/csv",
             )
         },

@@ -80,4 +80,4 @@ def parceiros_teste(db, client, mock_cep_response):
     ]
 
     for parceiro in parceiros:
-        crud.criar_parceiro(db, schemas.SchemaJsonParceiro(**parceiro))
+        crud.create_partner(db, schemas.SchemaJsonParceiro(**parceiro))

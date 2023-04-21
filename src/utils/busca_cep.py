@@ -20,6 +20,7 @@ def salva_novo_cep(db: Session, cep: str):
 
 
 def verifica_cep(db: Session, cep: str):
+    cep = "".join(filter(str.isdigit, cep))
     cep_info_db = db.query(CepInfo).filter(CepInfo.cep == cep).first()
 
     if not cep_info_db:

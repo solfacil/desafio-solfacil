@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from src.database.models import Parceiro
 
 
-def consultar_parceiro_cnpj(db: Session, cnpj_parceiro: str):
+def consult_partner_cnpj(db: Session, cnpj_parceiro: str):
     parceiro = (
         db.query(Parceiro).filter(Parceiro.cnpj == cnpj_parceiro).first()
     )
@@ -13,9 +13,7 @@ def consultar_parceiro_cnpj(db: Session, cnpj_parceiro: str):
     return parceiro
 
 
-def pesquisar_parceiro(
-    db: Session, query: str, skip: int = 0, limit: int = 100
-):
+def search_partner(db: Session, query: str, skip: int = 0, limit: int = 100):
     resultados = (
         db.query(Parceiro)
         .filter(

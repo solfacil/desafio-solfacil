@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 # Rota para receber o arquivo e salvar no banco de dados
-@router.post("/parceiros/")
+@router.post("/parceiros/", tags=["Resposta Desafio"])
 async def upload_parceiros(
     file: UploadFile = File(...), db: Session = Depends(get_db)
 ):
