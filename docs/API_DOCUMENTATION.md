@@ -1,22 +1,3 @@
----
-title: Your API Title v1.0.0
-language_tabs:
-  - shell: Shell
-  - http: HTTP
-  - javascript: JavaScript
-  - ruby: Ruby
-  - python: Python
-  - php: PHP
-  - java: Java
-  - go: Go
-toc_footers: []
-includes: []
-search: true
-highlight_theme: darkula
-headingLevel: 2
-
----
-
 <!-- Generator: Widdershins v4.0.1 -->
 
 <h1 id="your-api-title">Your API Title v1.0.0</h1>
@@ -33,56 +14,6 @@ Your API Description
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET /favicon.ico \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET /favicon.ico HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/favicon.ico',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/favicon.ico',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -92,79 +23,6 @@ headers = {
 r = requests.get('/favicon.ico', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/favicon.ico', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/favicon.ico");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/favicon.ico", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -198,56 +56,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET / \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET / HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -257,79 +65,6 @@ headers = {
 r = requests.get('/', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -365,56 +100,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET /parceiros/ \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET /parceiros/ HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/parceiros/',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/parceiros/',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -424,79 +109,6 @@ headers = {
 r = requests.get('/parceiros/', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/parceiros/', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/parceiros/");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/parceiros/", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -579,67 +191,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X POST /parceiros/ \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-POST /parceiros/ HTTP/1.1
-
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-const inputBody = '{
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
-
-fetch('/parceiros/',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post '/parceiros/',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -650,81 +201,6 @@ headers = {
 r = requests.post('/parceiros/', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','/parceiros/', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/parceiros/");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/parceiros/", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -792,66 +268,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X PUT /parceiros/{cnpj} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-PUT /parceiros/{cnpj} HTTP/1.1
-
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-const inputBody = '{
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
-
-fetch('/parceiros/{cnpj}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.put '/parceiros/{cnpj}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -862,81 +278,6 @@ headers = {
 r = requests.put('/parceiros/{cnpj}', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','/parceiros/{cnpj}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/parceiros/{cnpj}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PUT", "/parceiros/{cnpj}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -1004,56 +345,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X DELETE /parceiros/{cnpj} \
-  -H 'Accept: application/json'
-
-```
-
-```http
-DELETE /parceiros/{cnpj} HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/parceiros/{cnpj}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.delete '/parceiros/{cnpj}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -1063,79 +354,6 @@ headers = {
 r = requests.delete('/parceiros/{cnpj}', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','/parceiros/{cnpj}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/parceiros/{cnpj}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("DELETE", "/parceiros/{cnpj}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -1186,56 +404,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET /buscar/{cnpj} \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET /buscar/{cnpj} HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/buscar/{cnpj}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/buscar/{cnpj}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -1245,79 +413,6 @@ headers = {
 r = requests.get('/buscar/{cnpj}', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/buscar/{cnpj}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/buscar/{cnpj}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/buscar/{cnpj}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -1372,57 +467,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X GET /buscar/?criterio=string \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET /buscar/?criterio=string HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/buscar/?criterio=string',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/buscar/',
-  params: {
-  'criterio' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -1434,79 +478,6 @@ r = requests.get('/buscar/', params={
 }, headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/buscar/', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/buscar/?criterio=string");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/buscar/", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 
@@ -1592,62 +563,6 @@ This operation does not require authentication
 
 > Code samples
 
-```shell
-# You can also use wget
-curl -X POST /upload/parceiros/ \
-  -H 'Content-Type: multipart/form-data' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-POST /upload/parceiros/ HTTP/1.1
-
-Content-Type: multipart/form-data
-Accept: application/json
-
-```
-
-```javascript
-const inputBody = '{
-  "file": "string"
-}';
-const headers = {
-  'Content-Type':'multipart/form-data',
-  'Accept':'application/json'
-};
-
-fetch('/upload/parceiros/',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'multipart/form-data',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post '/upload/parceiros/',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 ```python
 import requests
 headers = {
@@ -1658,81 +573,6 @@ headers = {
 r = requests.post('/upload/parceiros/', headers = headers)
 
 print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'multipart/form-data',
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','/upload/parceiros/', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/upload/parceiros/");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"multipart/form-data"},
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/upload/parceiros/", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
 
 ```
 

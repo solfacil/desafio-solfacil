@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #swagger-ui {
+        height: calc(100vh - 50px);
+      }
+    </style>
+    <!-- Load Swagger UI -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"
+    />
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js"></script>
+  </head>
+  <body>
+    <!-- Element where Swagger UI will be rendered -->
+    <div id="swagger-ui"></div>
+    <!-- Initialize Swagger UI -->
+    <script>
+      const ui = SwaggerUIBundle({
+        url: "openapi.json",
+        dom_id: "#swagger-ui",
+        presets: [SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout",
+      });
+    </script>
+  </body>
+</html>
