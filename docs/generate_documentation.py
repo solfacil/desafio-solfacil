@@ -4,6 +4,9 @@ import subprocess
 from fastapi.openapi.utils import get_openapi
 
 from src.main import app
+from src.utils.messages import Message
+
+descriptions = Message("descriptions")
 
 
 def custom_openapi():
@@ -11,11 +14,19 @@ def custom_openapi():
         return app.openapi_schema
 
     openapi_schema = get_openapi(
-        title="Your API Title",
+        title="Parceiros API",
         version="1.0.0",
-        description="Your API Description",
+        description=descriptions.get("open_api"),
         routes=app.routes,
     )
+    openapi_schema["info"]["contact"] = {
+        "name": "Paulo Henrique Raulino da Silva",
+        "email": "phraulino@outlook.com",
+    }
+    openapi_schema["info"]["license"] = {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    }
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 

@@ -1,12 +1,15 @@
 <!-- Generator: Widdershins v4.0.1 -->
 
-<h1 id="your-api-title">Your API Title v1.0.0</h1>
+<h1 id="parceiros-api">Parceiros API v1.0.0</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-Your API Description
+Uma API para gerenciamento de parceiros, permitindo atualizar e criar novos parceiros a partir de arquivos CSV e listar os parceiros existentes.
 
-<h1 id="your-api-title-padr-es">Padrões</h1>
+Email: <a href="mailto:phraulino@outlook.com">Paulo Henrique Raulino da Silva</a> 
+License: <a href="https://opensource.org/licenses/MIT">MIT</a>
+
+<h1 id="parceiros-api-padr-es">Padrões</h1>
 
 ## favicon_favicon_ico_get
 
@@ -92,7 +95,7 @@ null
 This operation does not require authentication
 </aside>
 
-<h1 id="your-api-title-crud-parceiros">Crud Parceiros</h1>
+<h1 id="parceiros-api-crud-parceiros">Crud Parceiros</h1>
 
 ## listar_parceiros_partners__get
 
@@ -114,14 +117,16 @@ print(r.json())
 
 `GET /partners/`
 
-*Listar Parceiros*
+*Listar parceiros*
+
+Recupera uma lista de parceiros, com paginação.
 
 <h3 id="listar_parceiros_partners__get-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|skip|query|integer|false|none|
-|limit|query|integer|false|none|
+|skip|query|integer|false|Número de registros para pular na listagem|
+|limit|query|integer|false|Limite de registros a serem retornados na listagem|
 
 > Example responses
 
@@ -130,12 +135,12 @@ print(r.json())
 ```json
 [
   {
-    "razao_social": "string",
-    "nome_fantasia": "string",
-    "telefone": "string",
-    "email": "string",
-    "cep": "string",
-    "cnpj": "string",
+    "razao_social": "01234567891234",
+    "nome_fantasia": "Empresa Exemplo",
+    "telefone": "(12) 3456-7890",
+    "email": "exemplo@email.com",
+    "cep": "12345-678",
+    "cnpj": "01.234.567/8912-34",
     "id_parceiro": "string",
     "zip_code_info": {
       "cep": "string",
@@ -206,18 +211,20 @@ print(r.json())
 
 `POST /partners/`
 
-*Criar Parceiro*
+*Criar parceiro*
+
+Cria um novo parceiro com as informações fornecidas.
 
 > Body parameter
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string"
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34"
 }
 ```
 
@@ -233,12 +240,12 @@ print(r.json())
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34",
   "id_parceiro": "string",
   "zip_code_info": {
     "cep": "string",
@@ -283,16 +290,18 @@ print(r.json())
 
 `PUT /partners/{cnpj}`
 
-*Atualizar Parceiro*
+*Atualizar parceiro*
+
+Atualiza as informações do parceiro com o CNPJ fornecido.
 
 > Body parameter
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
   "cep": "string"
 }
 ```
@@ -310,12 +319,12 @@ print(r.json())
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34",
   "id_parceiro": "string",
   "zip_code_info": {
     "cep": "string",
@@ -359,7 +368,9 @@ print(r.json())
 
 `DELETE /partners/{cnpj}`
 
-*Deletar Parceiro*
+*Deletar parceiro*
+
+Deleta o parceiro com o CNPJ fornecido.
 
 <h3 id="deletar_parceiro_partners__cnpj__delete-parameters">Parameters</h3>
 
@@ -396,7 +407,7 @@ print(r.json())
 This operation does not require authentication
 </aside>
 
-<h1 id="your-api-title-pesquisa-parceiros">Pesquisa Parceiros</h1>
+<h1 id="parceiros-api-pesquisa-parceiros">Pesquisa Parceiros</h1>
 
 ## buscar_cnpj_parceiro_search__cnpj__get
 
@@ -418,7 +429,9 @@ print(r.json())
 
 `GET /search/{cnpj}`
 
-*Buscar Cnpj Parceiro*
+*Buscar parceiro por CNPJ*
+
+Recupera as informações do parceiro com o CNPJ fornecido.
 
 <h3 id="buscar_cnpj_parceiro_search__cnpj__get-parameters">Parameters</h3>
 
@@ -432,12 +445,12 @@ print(r.json())
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34",
   "id_parceiro": "string",
   "zip_code_info": {
     "cep": "string",
@@ -474,7 +487,7 @@ headers = {
 }
 
 r = requests.get('/search/', params={
-  'search_criteria': 'string'
+  'search_criteria': 'Empresa Exemplo'
 }, headers = headers)
 
 print(r.json())
@@ -483,7 +496,9 @@ print(r.json())
 
 `GET /search/`
 
-*Pesquisar Parceiros*
+*Pesquisar parceiros*
+
+Realiza uma pesquisa nos parceiros com base nos critérios fornecidos, podendo buscar por qualquer informação presente nas colunas.
 
 <h3 id="pesquisar_parceiros_search__get-parameters">Parameters</h3>
 
@@ -500,12 +515,12 @@ print(r.json())
 ```json
 [
   {
-    "razao_social": "string",
-    "nome_fantasia": "string",
-    "telefone": "string",
-    "email": "string",
-    "cep": "string",
-    "cnpj": "string",
+    "razao_social": "01234567891234",
+    "nome_fantasia": "Empresa Exemplo",
+    "telefone": "(12) 3456-7890",
+    "email": "exemplo@email.com",
+    "cep": "12345-678",
+    "cnpj": "01.234.567/8912-34",
     "id_parceiro": "string",
     "zip_code_info": {
       "cep": "string",
@@ -555,7 +570,7 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-<h1 id="your-api-title-upload-parceiros">Upload Parceiros</h1>
+<h1 id="parceiros-api-upload-parceiros">Upload Parceiros</h1>
 
 ## carregar_parceiros_upload_partners__post
 
@@ -578,7 +593,12 @@ print(r.json())
 
 `POST /upload/partners/`
 
-*Carregar Parceiros*
+*Carregar parceiros via CSV*
+
+Carregar parceiros a partir de um arquivo CSV enviado. O arquivo deve ter o seguinte formato: CNPJ, Nome, E-mail e Telefone.Exemplo de conteúdo CSV:
+
+CNPJ, Razão Social, Nome Fantasia, Telefone, Email, CEP 
+12.345.678/9123-45,Sol Eterno,Sol Eterno LTDA,(21) 98207-9901,teste@test.com,22783-115
 
 > Body parameter
 
@@ -636,7 +656,7 @@ Body_carregar_parceiros_upload_partners__post
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|file|string(binary)|true|none|none|
+|file|string(binary)|true|none|Arquivo CSV contendo os dados dos parceiros a serem carregados.|
 
 <h2 id="tocS_HTTPValidationError">HTTPValidationError</h2>
 <!-- backwards compatibility -->
@@ -677,12 +697,12 @@ HTTPValidationError
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string"
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34"
 }
 
 ```
@@ -709,12 +729,12 @@ PartnerJsonSchema
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
-  "cep": "string",
-  "cnpj": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
+  "cep": "12345-678",
+  "cnpj": "01.234.567/8912-34",
   "id_parceiro": "string",
   "zip_code_info": {
     "cep": "string",
@@ -753,10 +773,10 @@ PartnerSchema
 
 ```json
 {
-  "razao_social": "string",
-  "nome_fantasia": "string",
-  "telefone": "string",
-  "email": "string",
+  "razao_social": "01234567891234",
+  "nome_fantasia": "Empresa Exemplo",
+  "telefone": "(12) 3456-7890",
+  "email": "exemplo@email.com",
   "cep": "string"
 }
 

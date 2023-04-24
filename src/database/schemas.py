@@ -38,10 +38,14 @@ class ZipCodeSchema(BaseModel):
 
 
 class PartnerUpdateSchema(BaseModel):
-    company_name: Optional[str] = Field(alias="razao_social")
-    trade_name: Optional[str] = Field(alias="nome_fantasia")
-    phone: Optional[str] = Field(alias="telefone")
-    email: Optional[str]
+    company_name: Optional[str] = Field(
+        alias="razao_social", example="01234567891234"
+    )
+    trade_name: Optional[str] = Field(
+        alias="nome_fantasia", example="Empresa Exemplo"
+    )
+    phone: Optional[str] = Field(alias="telefone", example="(12) 3456-7890")
+    email: Optional[str] = Field(example="exemplo@email.com")
     zip_code: Optional[str] = Field(alias="cep")
 
     @validator("zip_code")
@@ -51,8 +55,8 @@ class PartnerUpdateSchema(BaseModel):
 
 
 class PartnerJsonSchema(PartnerUpdateSchema):
-    cnpj: str
-    zip_code: str = Field(alias="cep")
+    cnpj: str = Field(example="01.234.567/8912-34")
+    zip_code: str = Field(alias="cep", example="12345-678")
 
     @validator("cnpj")
     def validate_cnpj(cls, value):

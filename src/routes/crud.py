@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, Query, Response, status
 from sqlalchemy.orm import Session
 
 from src.database import get_db, schemas
@@ -11,8 +11,10 @@ from src.database.crud import (
     update_partner,
 )
 from src.utils.exceptions import response_exception
+from src.utils.messages import Message
 
 router = APIRouter()
+descriptions = Message("descriptions")
 
 
 @router.get(
@@ -20,9 +22,19 @@ router = APIRouter()
     response_model=List[schemas.PartnerSchema],
     status_code=status.HTTP_200_OK,
     tags=["Resposta Desafio"],
+    summary="Listar parceiros",
+    description=descriptions.get("list_partners_description"),
 )
 def listar_parceiros(
-    skip: int = 0, limit: int = 10, db: Session = Depends(get_db)
+    skip: int = Query(
+        0, description="Número de registros para pular na listagem", example=5
+    ),
+    limit: int = Query(
+        10,
+        description="Limite de registros a serem retornados na listagem",
+        example=10,
+    ),
+    db: Session = Depends(get_db),
 ):
     try:
         partners = list_partners(db, skip, limit)
@@ -35,6 +47,8 @@ def listar_parceiros(
     "/",
     response_model=schemas.PartnerSchema,
     status_code=status.HTTP_201_CREATED,
+    summary="Criar parceiro",
+    description=descriptions.get("create_partner_description"),
 )
 def criar_parceiro(
     partner: schemas.PartnerJsonSchema, db: Session = Depends(get_db)
@@ -50,6 +64,8 @@ def criar_parceiro(
     "/{cnpj}",
     response_model=schemas.PartnerSchema,
     status_code=status.HTTP_200_OK,
+    summary="Atualizar parceiro",
+    description=descriptions.get("update_partner_description"),
 )
 def atualizar_parceiro(
     cnpj: str,
@@ -63,7 +79,12 @@ def atualizar_parceiro(
         Response(content=response_exception(*e.args))
 
 
-@router.delete("/{cnpj}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete(
+    "/{cnpj}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    summary="Deletar parceiro",
+    description=descriptions.get("delete_partner_description"),
+)
 def deletar_parceiro(cnpj: str, db: Session = Depends(get_db)):
     try:
         delete_partner(db, cnpj)

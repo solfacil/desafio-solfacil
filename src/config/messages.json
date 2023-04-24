@@ -66,5 +66,16 @@
       "message": "Parceiro não foi atualizado/criado com sucesso",
       "status": false
     }
+  },
+  "descriptions": {
+    "open_api": "Uma API para gerenciamento de parceiros, permitindo atualizar e criar novos parceiros a partir de arquivos CSV e listar os parceiros existentes.",
+    "search_partners_description": "Realiza uma pesquisa nos parceiros com base nos critérios fornecidos, podendo buscar por qualquer informação presente nas colunas.",
+    "upload_partners_description": "Recebe um arquivo CSV por upload e processa os registros para atualizar parceiros existentes ou criar novos parceiros.",
+    "list_partners_description": "Recupera uma lista de parceiros, com paginação.",
+    "create_partner_description": "Cria um novo parceiro com as informações fornecidas.",
+    "update_partner_description": "Atualiza as informações do parceiro com o CNPJ fornecido.",
+    "delete_partner_description": "Deleta o parceiro com o CNPJ fornecido.",
+    "search_partner_description": "Recupera as informações do parceiro com o CNPJ fornecido.",
+    "upload_partners_file_description": "Arquivo CSV contendo os dados dos parceiros a serem carregados."
   }
 }
