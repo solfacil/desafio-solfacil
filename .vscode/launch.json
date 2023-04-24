@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "name": "Pytest",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-s", "-v", "tests/"],
+      "env": {
+        "PYTHONPATH": "/Users/phraulino/Library/Caches/pypoetry/virtualenvs/solfacil-challenge-ph-7ksuRwke-py3.10/bin/python"
+      }
+    },
+    {
+      "name": "Python: FastAPI",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["src.main:app", "--port", "5001", "--reload"],
+      "env": {
+        "ENVIRONMENT": "local",
+        "SK_DB_USER": "phraulino",
+        "SK_DB_PASS": "SolPass",
+        "SK_DB_ENDPOINT": "localhost:5432",
+        "SK_DB_NAME": "solfacil",
+        "API_PORT": "5001",
+        "API_HOST": "0.0.0.0"
+      },
+      "jinja": true,
+      "justMyCode": true
+    }
+  ]
+}
