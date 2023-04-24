@@ -58,4 +58,4 @@ def generate_markdown(input_file: str, output_file: str):
 
 
 if is_widdershins_installed():
-    generate_markdown("docs/openapi.json", "docs/API_DOCUMENTATION.md")
+    generate_markdown("docs/openapi.json", "Api_Documentation.md")
