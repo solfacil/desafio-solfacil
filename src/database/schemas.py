@@ -26,10 +26,10 @@ class ZipCodeJsonSchema(BaseModel):
 
 
 class ZipCodeSchema(BaseModel):
-    zip_code: str = Field(alias="cep")
-    district: str = Field(alias="bairro")
-    city: str = Field(alias="localidade")
-    state: str = Field(alias="uf")
+    zip_code: str = Field(alias="cep", example="22783115")
+    district: str = Field(alias="bairro", example="Centro")
+    city: str = Field(alias="localidade", example="São Paulo")
+    state: str = Field(alias="uf", example="SP")
     last_update: datetime
 
     class Config:
@@ -39,10 +39,10 @@ class ZipCodeSchema(BaseModel):
 
 class PartnerUpdateSchema(BaseModel):
     company_name: Optional[str] = Field(
-        alias="razao_social", example="01234567891234"
+        alias="razao_social", example="Empresa razao social"
     )
     trade_name: Optional[str] = Field(
-        alias="nome_fantasia", example="Empresa Exemplo"
+        alias="nome_fantasia", example="Empresa exemplo"
     )
     phone: Optional[str] = Field(alias="telefone", example="(12) 3456-7890")
     email: Optional[str] = Field(example="exemplo@email.com")
@@ -72,7 +72,7 @@ class PartnerJsonSchema(PartnerUpdateSchema):
 
 
 class PartnerSchema(PartnerJsonSchema):
-    partner_id: str = Field(alias="id_parceiro")
+    partner_id: str = Field(alias="id_parceiro", example="hash uuid")
     zip_code_info: ZipCodeSchema
     last_update: datetime
 

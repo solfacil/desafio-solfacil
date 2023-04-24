@@ -38,7 +38,12 @@ def validate_csv(db: Session, headers, rows):
             raise Exception("CSV is not valid rows")
 
         for index in range(len(row)):
-            partner[headers[index]] = row[index]
+            if headers[index] == "cnpj":
+                partner[headers[index]] = "".join(
+                    filter(str.isdigit, row[index])
+                )
+            else:
+                partner[headers[index]] = row[index]
 
         cnpj_partner = partner["cnpj"]
         status_partners[cnpj_partner] = validate_cnpj_zip_code(db, partner)

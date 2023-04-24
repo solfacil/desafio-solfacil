@@ -20,8 +20,9 @@ def custom_openapi():
         routes=app.routes,
     )
     openapi_schema["info"]["contact"] = {
-        "name": "Paulo Henrique Raulino da Silva",
+        "name": "Paulo Henrique Silva",
         "email": "phraulino@outlook.com",
+        "url": "https://phraulino.super.site/",
     }
     openapi_schema["info"]["license"] = {
         "name": "MIT",

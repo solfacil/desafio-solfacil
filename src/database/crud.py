@@ -17,7 +17,7 @@ def create_partner(db: Session, partner: schemas.PartnerJsonSchema) -> Partner:
         db.refresh(new_partner)
     else:
         raise Exception("Invalid Zip Code")
-    return new_partner
+    return new_partner, "partner_created"
 
 
 def update_partner(
@@ -39,7 +39,7 @@ def update_partner(
     db.commit()
     db.refresh(partner_found)
 
-    return partner_found
+    return partner_found, "partner_updated"
 
 
 def delete_partner(db: Session, cnpj: str):

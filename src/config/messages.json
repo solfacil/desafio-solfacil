@@ -65,6 +65,14 @@
     "partner_not_updated": {
       "message": "Parceiro não foi atualizado/criado com sucesso",
       "status": false
+    },
+    "partner_created": {
+      "message": "Parceiro foi criado com sucesso!",
+      "status": true
+    },
+    "partner_updated": {
+      "message": "Parceiro foi atualizado com sucesso!",
+      "status": true
     }
   },
   "descriptions": {

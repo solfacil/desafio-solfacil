@@ -6,7 +6,7 @@
 
 Uma API para gerenciamento de parceiros, permitindo atualizar e criar novos parceiros a partir de arquivos CSV e listar os parceiros existentes.
 
-Email: <a href="mailto:phraulino@outlook.com">Paulo Henrique Raulino da Silva</a> 
+Email: <a href="mailto:phraulino@outlook.com">Paulo Henrique Silva</a> Web: <a href="https://phraulino.super.site/">Paulo Henrique Silva</a> 
 License: <a href="https://opensource.org/licenses/MIT">MIT</a>
 
 <h1 id="parceiros-api-padr-es">Padrões</h1>
@@ -135,18 +135,18 @@ Recupera uma lista de parceiros, com paginação.
 ```json
 [
   {
-    "razao_social": "01234567891234",
-    "nome_fantasia": "Empresa Exemplo",
+    "razao_social": "Empresa razao social",
+    "nome_fantasia": "Empresa exemplo",
     "telefone": "(12) 3456-7890",
     "email": "exemplo@email.com",
     "cep": "12345-678",
     "cnpj": "01.234.567/8912-34",
-    "id_parceiro": "string",
+    "id_parceiro": "hash uuid",
     "zip_code_info": {
-      "cep": "string",
-      "bairro": "string",
-      "localidade": "string",
-      "uf": "string",
+      "cep": "22783115",
+      "bairro": "Centro",
+      "localidade": "São Paulo",
+      "uf": "SP",
       "last_update": "2019-08-24T14:15:22Z"
     },
     "last_update": "2019-08-24T14:15:22Z"
@@ -219,8 +219,8 @@ Cria um novo parceiro com as informações fornecidas.
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
@@ -240,18 +240,18 @@ Cria um novo parceiro com as informações fornecidas.
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
   "cnpj": "01.234.567/8912-34",
-  "id_parceiro": "string",
+  "id_parceiro": "hash uuid",
   "zip_code_info": {
-    "cep": "string",
-    "bairro": "string",
-    "localidade": "string",
-    "uf": "string",
+    "cep": "22783115",
+    "bairro": "Centro",
+    "localidade": "São Paulo",
+    "uf": "SP",
     "last_update": "2019-08-24T14:15:22Z"
   },
   "last_update": "2019-08-24T14:15:22Z"
@@ -298,8 +298,8 @@ Atualiza as informações do parceiro com o CNPJ fornecido.
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "string"
@@ -319,18 +319,18 @@ Atualiza as informações do parceiro com o CNPJ fornecido.
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
   "cnpj": "01.234.567/8912-34",
-  "id_parceiro": "string",
+  "id_parceiro": "hash uuid",
   "zip_code_info": {
-    "cep": "string",
-    "bairro": "string",
-    "localidade": "string",
-    "uf": "string",
+    "cep": "22783115",
+    "bairro": "Centro",
+    "localidade": "São Paulo",
+    "uf": "SP",
     "last_update": "2019-08-24T14:15:22Z"
   },
   "last_update": "2019-08-24T14:15:22Z"
@@ -445,18 +445,18 @@ Recupera as informações do parceiro com o CNPJ fornecido.
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
   "cnpj": "01.234.567/8912-34",
-  "id_parceiro": "string",
+  "id_parceiro": "hash uuid",
   "zip_code_info": {
-    "cep": "string",
-    "bairro": "string",
-    "localidade": "string",
-    "uf": "string",
+    "cep": "22783115",
+    "bairro": "Centro",
+    "localidade": "São Paulo",
+    "uf": "SP",
     "last_update": "2019-08-24T14:15:22Z"
   },
   "last_update": "2019-08-24T14:15:22Z"
@@ -515,18 +515,18 @@ Realiza uma pesquisa nos parceiros com base nos critérios fornecidos, podendo b
 ```json
 [
   {
-    "razao_social": "01234567891234",
-    "nome_fantasia": "Empresa Exemplo",
+    "razao_social": "Empresa razao social",
+    "nome_fantasia": "Empresa exemplo",
     "telefone": "(12) 3456-7890",
     "email": "exemplo@email.com",
     "cep": "12345-678",
     "cnpj": "01.234.567/8912-34",
-    "id_parceiro": "string",
+    "id_parceiro": "hash uuid",
     "zip_code_info": {
-      "cep": "string",
-      "bairro": "string",
-      "localidade": "string",
-      "uf": "string",
+      "cep": "22783115",
+      "bairro": "Centro",
+      "localidade": "São Paulo",
+      "uf": "SP",
       "last_update": "2019-08-24T14:15:22Z"
     },
     "last_update": "2019-08-24T14:15:22Z"
@@ -697,8 +697,8 @@ HTTPValidationError
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
@@ -729,18 +729,18 @@ PartnerJsonSchema
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "12345-678",
   "cnpj": "01.234.567/8912-34",
-  "id_parceiro": "string",
+  "id_parceiro": "hash uuid",
   "zip_code_info": {
-    "cep": "string",
-    "bairro": "string",
-    "localidade": "string",
-    "uf": "string",
+    "cep": "22783115",
+    "bairro": "Centro",
+    "localidade": "São Paulo",
+    "uf": "SP",
     "last_update": "2019-08-24T14:15:22Z"
   },
   "last_update": "2019-08-24T14:15:22Z"
@@ -773,8 +773,8 @@ PartnerSchema
 
 ```json
 {
-  "razao_social": "01234567891234",
-  "nome_fantasia": "Empresa Exemplo",
+  "razao_social": "Empresa razao social",
+  "nome_fantasia": "Empresa exemplo",
   "telefone": "(12) 3456-7890",
   "email": "exemplo@email.com",
   "cep": "string"
@@ -848,10 +848,10 @@ continued
 
 ```json
 {
-  "cep": "string",
-  "bairro": "string",
-  "localidade": "string",
-  "uf": "string",
+  "cep": "22783115",
+  "bairro": "Centro",
+  "localidade": "São Paulo",
+  "uf": "SP",
   "last_update": "2019-08-24T14:15:22Z"
 }
 

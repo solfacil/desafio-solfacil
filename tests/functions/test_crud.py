@@ -10,10 +10,11 @@ def test_new_user_generates_uuid(client, db, mock_zipcode_response):
         {"cnpj": cnpj_test, "cep": zip_code_test}
     )
 
-    new_partner = create_partner(db, partner)
+    new_partner, status_message = create_partner(db, partner)
 
     assert new_partner.partner_id != ""
     assert new_partner.cnpj == cnpj_test
+    assert status_message == "partner_created"
 
 
 def test_list_registered_partners_returns_test_partners(

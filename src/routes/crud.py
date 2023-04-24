@@ -1,7 +1,8 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, Query, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from sqlalchemy.orm import Session
+from validate_docbr import CNPJ
 
 from src.database import get_db, schemas
 from src.database.crud import (
@@ -14,6 +15,7 @@ from src.utils.exceptions import response_exception
 from src.utils.messages import Message
 
 router = APIRouter()
+messages = Message()
 descriptions = Message("descriptions")
 
 
@@ -27,7 +29,7 @@ descriptions = Message("descriptions")
 )
 def listar_parceiros(
     skip: int = Query(
-        0, description="Número de registros para pular na listagem", example=5
+        0, description="Número de registros para pular na listagem", example=0
     ),
     limit: int = Query(
         10,
@@ -54,8 +56,9 @@ def criar_parceiro(
     partner: schemas.PartnerJsonSchema, db: Session = Depends(get_db)
 ):
     try:
-        new_partner = create_partner(db, partner)
-        return new_partner.serialize()
+        new_partner, status_message = create_partner(db, partner)
+        if status_message:
+            return new_partner.serialize()
     except Exception as e:
         Response(content=response_exception(*e.args))
 
@@ -73,8 +76,9 @@ def atualizar_parceiro(
     db: Session = Depends(get_db),
 ):
     try:
-        updated_partner = update_partner(db, cnpj, partner)
-        return updated_partner.serialize()
+        updated_partner, status_message = update_partner(db, cnpj, partner)
+        if status_message:
+            return updated_partner.serialize()
     except Exception as e:
         Response(content=response_exception(*e.args))
 
@@ -87,6 +91,9 @@ def atualizar_parceiro(
 )
 def deletar_parceiro(cnpj: str, db: Session = Depends(get_db)):
     try:
+        if not CNPJ().validate(cnpj):
+            raise HTTPException(**messages.get("cnpj_invalid"))
+        cnpj = "".join(filter(str.isdigit, cnpj))
         delete_partner(db, cnpj)
     except Exception as e:
-        Response(content=response_exception(*e.args))
+        Response(content=response_exception(e))

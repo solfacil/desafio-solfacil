@@ -166,10 +166,17 @@ def test_update_partner_with_wrong_zip_code(
 
 
 def test_delete_partner(client, test_partners):
-    response = client.delete("/partners/69971725000123")
+    response = client.delete("/partners/16470954000106")
     assert response.status_code == status.HTTP_204_NO_CONTENT
 
 
 def test_delete_nonexistent_partner(client, test_partners):
     response = client.delete("/partners/84529322000112")
     assert response.status_code == status.HTTP_404_NOT_FOUND
+
+
+def test_delete_not_valid_cnpj_partner(client, test_partners):
+    response = client.delete("/partners/845293asdas22000112")
+    msg = message.get("cnpj_invalid")
+    assert response.status_code == msg["status_code"]
+    assert response.json() == {"detail": msg["detail"]}

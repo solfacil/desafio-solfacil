@@ -11,6 +11,7 @@ from src.utils.validations import validate_csv
 
 router = APIRouter()
 
+messages = Message("validation")
 descriptions = Message("descriptions")
 
 
@@ -41,7 +42,11 @@ async def carregar_parceiros(
         validated_csv = validate_csv(db, headers=reader[0], rows=reader[1:])
         partners, status = validated_csv["partners"], validated_csv["status"]
         for partner in partners:
-            update_partner(db, partner.cnpj, partner, True)
+            partner_validated, status_message = update_partner(
+                db, partner.cnpj, partner, True
+            )
+            if partner_validated:
+                status[partner.cnpj] = messages.get(status_message)
         return status
     except Exception as e:
         return Response(content=response_exception(e))
