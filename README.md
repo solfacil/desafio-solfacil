@@ -1,5 +1,21 @@
 # Desafio Solfácil
 
+## usabilidade 
+
+- entrar na raiz do projeto 
+- executar o comando:
+    docker compose up
+
+- esperar a mensagem:
+    curriculum-api  | INFO:     Application startup complete.
+
+- entrar na pagina :
+    http://localhost:8000/docs
+
+executar a api usando um csv valido como o arquivo na pasta assets com o exemplo.csv
+
+
+
 ## Apresentação do problema
 
 Nosso cliente interno precisa atualizar rotineiramente os dados de nossos parceiros. O problema acontece que para atualizar, ele precisa entrar na página de edição de cada um dos parceiros. Isso é um trabalho muito tedioso e demorado.
@@ -47,3 +63,4 @@ Para nos enviar seu código, faça um fork desse repositório e nos envie um pul
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
 
 Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+
