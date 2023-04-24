@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -6,7 +8,9 @@ from sqlalchemy.orm import Session, sessionmaker
 from src.database import Base, crud, get_db, schemas
 from src.main import app
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./tests/database/test.db"
+db_file = "./tests/database/test.db"
+os.remove(db_file) if os.path.exists(db_file) else None
+SQLALCHEMY_DATABASE_URL = "sqlite:///{}".format(db_file)
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
@@ -39,7 +43,7 @@ def client(db) -> TestClient:
 
 
 @pytest.fixture
-def mock_cep_response(requests_mock):
+def mock_zipcode_response(requests_mock):
     url = "https://viacep.com.br/ws/01156325/json/"
     json = {
         "cep": "01156-325",
@@ -59,7 +63,7 @@ def mock_cep_response(requests_mock):
 
 
 @pytest.fixture
-def mock_cep_response_error(requests_mock):
+def mock_zipcode_response_error(requests_mock):
     url = "https://viacep.com.br/ws/01156325/json/"
     json = {"erro": True}
 
@@ -68,16 +72,16 @@ def mock_cep_response_error(requests_mock):
 
 
 @pytest.fixture(scope="function")
-def parceiros_teste(db, client, mock_cep_response):
-    parceiros = [
+def test_partners(db, client, mock_zipcode_response):
+    partners = [
         {"cnpj": "32402779000168", "cep": "01156325"},
         {"cnpj": "16470954000106", "cep": "01156325"},
         {
             "cnpj": "69971725000123",
             "cep": "01156325",
-            "email": "empresa@empresa.com",
+            "email": "company@company.com",
         },
     ]
 
-    for parceiro in parceiros:
-        crud.create_partner(db, schemas.SchemaJsonParceiro(**parceiro))
+    for partner in partners:
+        crud.create_partner(db, schemas.PartnerJsonSchema.parse_obj(partner))

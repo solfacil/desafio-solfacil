@@ -94,9 +94,9 @@ This operation does not require authentication
 
 <h1 id="your-api-title-crud-parceiros">Crud Parceiros</h1>
 
-## listar_parceiros_parceiros__get
+## listar_parceiros_partners__get
 
-<a id="opIdlistar_parceiros_parceiros__get"></a>
+<a id="opIdlistar_parceiros_partners__get"></a>
 
 > Code samples
 
@@ -106,17 +106,17 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/parceiros/', headers = headers)
+r = requests.get('/partners/', headers = headers)
 
 print(r.json())
 
 ```
 
-`GET /parceiros/`
+`GET /partners/`
 
 *Listar Parceiros*
 
-<h3 id="listar_parceiros_parceiros__get-parameters">Parameters</h3>
+<h3 id="listar_parceiros_partners__get-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -137,35 +137,35 @@ print(r.json())
     "cep": "string",
     "cnpj": "string",
     "id_parceiro": "string",
-    "cep_info": {
+    "zip_code_info": {
       "cep": "string",
       "bairro": "string",
       "localidade": "string",
       "uf": "string",
-      "data_atualizacao": "2019-08-24T14:15:22Z"
+      "last_update": "2019-08-24T14:15:22Z"
     },
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   }
 ]
 ```
 
-<h3 id="listar_parceiros_parceiros__get-responses">Responses</h3>
+<h3 id="listar_parceiros_partners__get-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
-<h3 id="listar_parceiros_parceiros__get-responseschema">Response Schema</h3>
+<h3 id="listar_parceiros_partners__get-responseschema">Response Schema</h3>
 
 Status Code **200**
 
-*Response Listar Parceiros Parceiros  Get*
+*Response Listar Parceiros Partners  Get*
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|Response Listar Parceiros Parceiros  Get|[[SchemaParceiro](#schemaschemaparceiro)]|false|none|none|
-|» SchemaParceiro|[SchemaParceiro](#schemaschemaparceiro)|false|none|none|
+|Response Listar Parceiros Partners  Get|[[PartnerSchema](#schemapartnerschema)]|false|none|none|
+|» PartnerSchema|[PartnerSchema](#schemapartnerschema)|false|none|none|
 |»» razao_social|string|false|none|none|
 |»» nome_fantasia|string|false|none|none|
 |»» telefone|string|false|none|none|
@@ -173,21 +173,21 @@ Status Code **200**
 |»» cep|string|true|none|none|
 |»» cnpj|string|true|none|none|
 |»» id_parceiro|string|true|none|none|
-|»» cep_info|[SchemaCepInfo](#schemaschemacepinfo)|true|none|none|
+|»» zip_code_info|[ZipCodeSchema](#schemazipcodeschema)|true|none|none|
 |»»» cep|string|true|none|none|
 |»»» bairro|string|true|none|none|
 |»»» localidade|string|true|none|none|
 |»»» uf|string|true|none|none|
-|»»» data_atualizacao|string(date-time)|true|none|none|
-|»» data_atualizacao|string(date-time)|true|none|none|
+|»»» last_update|string(date-time)|true|none|none|
+|»» last_update|string(date-time)|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## criar_parceiro_parceiros__post
+## criar_parceiro_partners__post
 
-<a id="opIdcriar_parceiro_parceiros__post"></a>
+<a id="opIdcriar_parceiro_partners__post"></a>
 
 > Code samples
 
@@ -198,13 +198,13 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('/parceiros/', headers = headers)
+r = requests.post('/partners/', headers = headers)
 
 print(r.json())
 
 ```
 
-`POST /parceiros/`
+`POST /partners/`
 
 *Criar Parceiro*
 
@@ -221,11 +221,11 @@ print(r.json())
 }
 ```
 
-<h3 id="criar_parceiro_parceiros__post-parameters">Parameters</h3>
+<h3 id="criar_parceiro_partners__post-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[SchemaJsonParceiro](#schemaschemajsonparceiro)|true|none|
+|body|body|[PartnerJsonSchema](#schemapartnerjsonschema)|true|none|
 
 > Example responses
 
@@ -240,31 +240,31 @@ print(r.json())
   "cep": "string",
   "cnpj": "string",
   "id_parceiro": "string",
-  "cep_info": {
+  "zip_code_info": {
     "cep": "string",
     "bairro": "string",
     "localidade": "string",
     "uf": "string",
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   },
-  "data_atualizacao": "2019-08-24T14:15:22Z"
+  "last_update": "2019-08-24T14:15:22Z"
 }
 ```
 
-<h3 id="criar_parceiro_parceiros__post-responses">Responses</h3>
+<h3 id="criar_parceiro_partners__post-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successful Response|[SchemaParceiro](#schemaschemaparceiro)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successful Response|[PartnerSchema](#schemapartnerschema)|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## atualizar_parceiro_parceiros__cnpj__put
+## atualizar_parceiro_partners__cnpj__put
 
-<a id="opIdatualizar_parceiro_parceiros__cnpj__put"></a>
+<a id="opIdatualizar_parceiro_partners__cnpj__put"></a>
 
 > Code samples
 
@@ -275,13 +275,13 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.put('/parceiros/{cnpj}', headers = headers)
+r = requests.put('/partners/{cnpj}', headers = headers)
 
 print(r.json())
 
 ```
 
-`PUT /parceiros/{cnpj}`
+`PUT /partners/{cnpj}`
 
 *Atualizar Parceiro*
 
@@ -297,12 +297,12 @@ print(r.json())
 }
 ```
 
-<h3 id="atualizar_parceiro_parceiros__cnpj__put-parameters">Parameters</h3>
+<h3 id="atualizar_parceiro_partners__cnpj__put-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |cnpj|path|string|true|none|
-|body|body|[SchemaUpdateParceiro](#schemaschemaupdateparceiro)|true|none|
+|body|body|[PartnerUpdateSchema](#schemapartnerupdateschema)|true|none|
 
 > Example responses
 
@@ -317,31 +317,31 @@ print(r.json())
   "cep": "string",
   "cnpj": "string",
   "id_parceiro": "string",
-  "cep_info": {
+  "zip_code_info": {
     "cep": "string",
     "bairro": "string",
     "localidade": "string",
     "uf": "string",
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   },
-  "data_atualizacao": "2019-08-24T14:15:22Z"
+  "last_update": "2019-08-24T14:15:22Z"
 }
 ```
 
-<h3 id="atualizar_parceiro_parceiros__cnpj__put-responses">Responses</h3>
+<h3 id="atualizar_parceiro_partners__cnpj__put-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|[SchemaParceiro](#schemaschemaparceiro)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|[PartnerSchema](#schemapartnerschema)|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## deletar_parceiro_parceiros__cnpj__delete
+## deletar_parceiro_partners__cnpj__delete
 
-<a id="opIddeletar_parceiro_parceiros__cnpj__delete"></a>
+<a id="opIddeletar_parceiro_partners__cnpj__delete"></a>
 
 > Code samples
 
@@ -351,17 +351,17 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.delete('/parceiros/{cnpj}', headers = headers)
+r = requests.delete('/partners/{cnpj}', headers = headers)
 
 print(r.json())
 
 ```
 
-`DELETE /parceiros/{cnpj}`
+`DELETE /partners/{cnpj}`
 
 *Deletar Parceiro*
 
-<h3 id="deletar_parceiro_parceiros__cnpj__delete-parameters">Parameters</h3>
+<h3 id="deletar_parceiro_partners__cnpj__delete-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -385,7 +385,7 @@ print(r.json())
 }
 ```
 
-<h3 id="deletar_parceiro_parceiros__cnpj__delete-responses">Responses</h3>
+<h3 id="deletar_parceiro_partners__cnpj__delete-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -398,9 +398,9 @@ This operation does not require authentication
 
 <h1 id="your-api-title-pesquisa-parceiros">Pesquisa Parceiros</h1>
 
-## buscar_cnpj_parceiro_buscar__cnpj__get
+## buscar_cnpj_parceiro_search__cnpj__get
 
-<a id="opIdbuscar_cnpj_parceiro_buscar__cnpj__get"></a>
+<a id="opIdbuscar_cnpj_parceiro_search__cnpj__get"></a>
 
 > Code samples
 
@@ -410,17 +410,17 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/buscar/{cnpj}', headers = headers)
+r = requests.get('/search/{cnpj}', headers = headers)
 
 print(r.json())
 
 ```
 
-`GET /buscar/{cnpj}`
+`GET /search/{cnpj}`
 
 *Buscar Cnpj Parceiro*
 
-<h3 id="buscar_cnpj_parceiro_buscar__cnpj__get-parameters">Parameters</h3>
+<h3 id="buscar_cnpj_parceiro_search__cnpj__get-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -439,31 +439,31 @@ print(r.json())
   "cep": "string",
   "cnpj": "string",
   "id_parceiro": "string",
-  "cep_info": {
+  "zip_code_info": {
     "cep": "string",
     "bairro": "string",
     "localidade": "string",
     "uf": "string",
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   },
-  "data_atualizacao": "2019-08-24T14:15:22Z"
+  "last_update": "2019-08-24T14:15:22Z"
 }
 ```
 
-<h3 id="buscar_cnpj_parceiro_buscar__cnpj__get-responses">Responses</h3>
+<h3 id="buscar_cnpj_parceiro_search__cnpj__get-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|[SchemaParceiro](#schemaschemaparceiro)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|[PartnerSchema](#schemapartnerschema)|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## pesquisar_parceiros_buscar__get
+## pesquisar_parceiros_search__get
 
-<a id="opIdpesquisar_parceiros_buscar__get"></a>
+<a id="opIdpesquisar_parceiros_search__get"></a>
 
 > Code samples
 
@@ -473,23 +473,23 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/buscar/', params={
-  'criterio': 'string'
+r = requests.get('/search/', params={
+  'search_criteria': 'string'
 }, headers = headers)
 
 print(r.json())
 
 ```
 
-`GET /buscar/`
+`GET /search/`
 
 *Pesquisar Parceiros*
 
-<h3 id="pesquisar_parceiros_buscar__get-parameters">Parameters</h3>
+<h3 id="pesquisar_parceiros_search__get-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|criterio|query|string|true|none|
+|search_criteria|query|string|true|none|
 |skip|query|integer|false|none|
 |limit|query|integer|false|none|
 
@@ -507,35 +507,35 @@ print(r.json())
     "cep": "string",
     "cnpj": "string",
     "id_parceiro": "string",
-    "cep_info": {
+    "zip_code_info": {
       "cep": "string",
       "bairro": "string",
       "localidade": "string",
       "uf": "string",
-      "data_atualizacao": "2019-08-24T14:15:22Z"
+      "last_update": "2019-08-24T14:15:22Z"
     },
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   }
 ]
 ```
 
-<h3 id="pesquisar_parceiros_buscar__get-responses">Responses</h3>
+<h3 id="pesquisar_parceiros_search__get-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
-<h3 id="pesquisar_parceiros_buscar__get-responseschema">Response Schema</h3>
+<h3 id="pesquisar_parceiros_search__get-responseschema">Response Schema</h3>
 
 Status Code **200**
 
-*Response Pesquisar Parceiros Buscar  Get*
+*Response Pesquisar Parceiros Search  Get*
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|Response Pesquisar Parceiros Buscar  Get|[[SchemaParceiro](#schemaschemaparceiro)]|false|none|none|
-|» SchemaParceiro|[SchemaParceiro](#schemaschemaparceiro)|false|none|none|
+|Response Pesquisar Parceiros Search  Get|[[PartnerSchema](#schemapartnerschema)]|false|none|none|
+|» PartnerSchema|[PartnerSchema](#schemapartnerschema)|false|none|none|
 |»» razao_social|string|false|none|none|
 |»» nome_fantasia|string|false|none|none|
 |»» telefone|string|false|none|none|
@@ -543,13 +543,13 @@ Status Code **200**
 |»» cep|string|true|none|none|
 |»» cnpj|string|true|none|none|
 |»» id_parceiro|string|true|none|none|
-|»» cep_info|[SchemaCepInfo](#schemaschemacepinfo)|true|none|none|
+|»» zip_code_info|[ZipCodeSchema](#schemazipcodeschema)|true|none|none|
 |»»» cep|string|true|none|none|
 |»»» bairro|string|true|none|none|
 |»»» localidade|string|true|none|none|
 |»»» uf|string|true|none|none|
-|»»» data_atualizacao|string(date-time)|true|none|none|
-|»» data_atualizacao|string(date-time)|true|none|none|
+|»»» last_update|string(date-time)|true|none|none|
+|»» last_update|string(date-time)|true|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -557,9 +557,9 @@ This operation does not require authentication
 
 <h1 id="your-api-title-upload-parceiros">Upload Parceiros</h1>
 
-## upload_parceiros_upload_parceiros__post
+## carregar_parceiros_upload_partners__post
 
-<a id="opIdupload_parceiros_upload_parceiros__post"></a>
+<a id="opIdcarregar_parceiros_upload_partners__post"></a>
 
 > Code samples
 
@@ -570,15 +570,15 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('/upload/parceiros/', headers = headers)
+r = requests.post('/upload/partners/', headers = headers)
 
 print(r.json())
 
 ```
 
-`POST /upload/parceiros/`
+`POST /upload/partners/`
 
-*Upload Parceiros*
+*Carregar Parceiros*
 
 > Body parameter
 
@@ -587,11 +587,11 @@ file: string
 
 ```
 
-<h3 id="upload_parceiros_upload_parceiros__post-parameters">Parameters</h3>
+<h3 id="carregar_parceiros_upload_partners__post-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[Body_upload_parceiros_upload_parceiros__post](#schemabody_upload_parceiros_upload_parceiros__post)|true|none|
+|body|body|[Body_carregar_parceiros_upload_partners__post](#schemabody_carregar_parceiros_upload_partners__post)|true|none|
 
 > Example responses
 
@@ -601,14 +601,14 @@ file: string
 null
 ```
 
-<h3 id="upload_parceiros_upload_parceiros__post-responses">Responses</h3>
+<h3 id="carregar_parceiros_upload_partners__post-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
 |422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
 
-<h3 id="upload_parceiros_upload_parceiros__post-responseschema">Response Schema</h3>
+<h3 id="carregar_parceiros_upload_partners__post-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
@@ -616,12 +616,12 @@ This operation does not require authentication
 
 # Schemas
 
-<h2 id="tocS_Body_upload_parceiros_upload_parceiros__post">Body_upload_parceiros_upload_parceiros__post</h2>
+<h2 id="tocS_Body_carregar_parceiros_upload_partners__post">Body_carregar_parceiros_upload_partners__post</h2>
 <!-- backwards compatibility -->
-<a id="schemabody_upload_parceiros_upload_parceiros__post"></a>
-<a id="schema_Body_upload_parceiros_upload_parceiros__post"></a>
-<a id="tocSbody_upload_parceiros_upload_parceiros__post"></a>
-<a id="tocsbody_upload_parceiros_upload_parceiros__post"></a>
+<a id="schemabody_carregar_parceiros_upload_partners__post"></a>
+<a id="schema_Body_carregar_parceiros_upload_partners__post"></a>
+<a id="tocSbody_carregar_parceiros_upload_partners__post"></a>
+<a id="tocsbody_carregar_parceiros_upload_partners__post"></a>
 
 ```json
 {
@@ -630,7 +630,7 @@ This operation does not require authentication
 
 ```
 
-Body_upload_parceiros_upload_parceiros__post
+Body_carregar_parceiros_upload_partners__post
 
 ### Properties
 
@@ -668,42 +668,12 @@ HTTPValidationError
 |---|---|---|---|---|
 |detail|[[ValidationError](#schemavalidationerror)]|false|none|none|
 
-<h2 id="tocS_SchemaCepInfo">SchemaCepInfo</h2>
+<h2 id="tocS_PartnerJsonSchema">PartnerJsonSchema</h2>
 <!-- backwards compatibility -->
-<a id="schemaschemacepinfo"></a>
-<a id="schema_SchemaCepInfo"></a>
-<a id="tocSschemacepinfo"></a>
-<a id="tocsschemacepinfo"></a>
-
-```json
-{
-  "cep": "string",
-  "bairro": "string",
-  "localidade": "string",
-  "uf": "string",
-  "data_atualizacao": "2019-08-24T14:15:22Z"
-}
-
-```
-
-SchemaCepInfo
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|cep|string|true|none|none|
-|bairro|string|true|none|none|
-|localidade|string|true|none|none|
-|uf|string|true|none|none|
-|data_atualizacao|string(date-time)|true|none|none|
-
-<h2 id="tocS_SchemaJsonParceiro">SchemaJsonParceiro</h2>
-<!-- backwards compatibility -->
-<a id="schemaschemajsonparceiro"></a>
-<a id="schema_SchemaJsonParceiro"></a>
-<a id="tocSschemajsonparceiro"></a>
-<a id="tocsschemajsonparceiro"></a>
+<a id="schemapartnerjsonschema"></a>
+<a id="schema_PartnerJsonSchema"></a>
+<a id="tocSpartnerjsonschema"></a>
+<a id="tocspartnerjsonschema"></a>
 
 ```json
 {
@@ -717,7 +687,7 @@ SchemaCepInfo
 
 ```
 
-SchemaJsonParceiro
+PartnerJsonSchema
 
 ### Properties
 
@@ -730,12 +700,12 @@ SchemaJsonParceiro
 |cep|string|true|none|none|
 |cnpj|string|true|none|none|
 
-<h2 id="tocS_SchemaParceiro">SchemaParceiro</h2>
+<h2 id="tocS_PartnerSchema">PartnerSchema</h2>
 <!-- backwards compatibility -->
-<a id="schemaschemaparceiro"></a>
-<a id="schema_SchemaParceiro"></a>
-<a id="tocSschemaparceiro"></a>
-<a id="tocsschemaparceiro"></a>
+<a id="schemapartnerschema"></a>
+<a id="schema_PartnerSchema"></a>
+<a id="tocSpartnerschema"></a>
+<a id="tocspartnerschema"></a>
 
 ```json
 {
@@ -746,19 +716,19 @@ SchemaJsonParceiro
   "cep": "string",
   "cnpj": "string",
   "id_parceiro": "string",
-  "cep_info": {
+  "zip_code_info": {
     "cep": "string",
     "bairro": "string",
     "localidade": "string",
     "uf": "string",
-    "data_atualizacao": "2019-08-24T14:15:22Z"
+    "last_update": "2019-08-24T14:15:22Z"
   },
-  "data_atualizacao": "2019-08-24T14:15:22Z"
+  "last_update": "2019-08-24T14:15:22Z"
 }
 
 ```
 
-SchemaParceiro
+PartnerSchema
 
 ### Properties
 
@@ -771,15 +741,15 @@ SchemaParceiro
 |cep|string|true|none|none|
 |cnpj|string|true|none|none|
 |id_parceiro|string|true|none|none|
-|cep_info|[SchemaCepInfo](#schemaschemacepinfo)|true|none|none|
-|data_atualizacao|string(date-time)|true|none|none|
+|zip_code_info|[ZipCodeSchema](#schemazipcodeschema)|true|none|none|
+|last_update|string(date-time)|true|none|none|
 
-<h2 id="tocS_SchemaUpdateParceiro">SchemaUpdateParceiro</h2>
+<h2 id="tocS_PartnerUpdateSchema">PartnerUpdateSchema</h2>
 <!-- backwards compatibility -->
-<a id="schemaschemaupdateparceiro"></a>
-<a id="schema_SchemaUpdateParceiro"></a>
-<a id="tocSschemaupdateparceiro"></a>
-<a id="tocsschemaupdateparceiro"></a>
+<a id="schemapartnerupdateschema"></a>
+<a id="schema_PartnerUpdateSchema"></a>
+<a id="tocSpartnerupdateschema"></a>
+<a id="tocspartnerupdateschema"></a>
 
 ```json
 {
@@ -792,7 +762,7 @@ SchemaParceiro
 
 ```
 
-SchemaUpdateParceiro
+PartnerUpdateSchema
 
 ### Properties
 
@@ -848,4 +818,34 @@ continued
 |---|---|---|---|---|
 |msg|string|true|none|none|
 |type|string|true|none|none|
+
+<h2 id="tocS_ZipCodeSchema">ZipCodeSchema</h2>
+<!-- backwards compatibility -->
+<a id="schemazipcodeschema"></a>
+<a id="schema_ZipCodeSchema"></a>
+<a id="tocSzipcodeschema"></a>
+<a id="tocszipcodeschema"></a>
+
+```json
+{
+  "cep": "string",
+  "bairro": "string",
+  "localidade": "string",
+  "uf": "string",
+  "last_update": "2019-08-24T14:15:22Z"
+}
+
+```
+
+ZipCodeSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cep|string|true|none|none|
+|bairro|string|true|none|none|
+|localidade|string|true|none|none|
+|uf|string|true|none|none|
+|last_update|string(date-time)|true|none|none|
 

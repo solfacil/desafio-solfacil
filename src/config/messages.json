@@ -1,0 +1,70 @@
+{
+  "exception": {
+    "internal_server_error": {
+      "detail": "Oops! Ocorreu um problema inesperado. Por favor, tente novamente mais tarde. ",
+      "status_code": 500
+    },
+    "message_not_found": {
+      "detail": "A mensagem solicitada não foi encontrada.",
+      "status_code": 500
+    },
+    "not_found_partner": {
+      "detail": "Este parceiro não existe na tabela",
+      "status_code": 404
+    },
+    "unique_constraint_error": {
+      "detail": "Este parceiro ja existe na tabela",
+      "status_code": 422
+    },
+    "csv_not_formated": {
+      "detail": "O formato deste arquivo CSV não está correto. Por favor, verifique as colunas e tente novamente.",
+      "status_code": 422
+    },
+    "cnpj_invalid": {
+      "detail": "A empresa informada possui um CNPJ inválido. Por favor, verifique o número digitado e tente novamente.",
+      "status_code": 422
+    },
+    "zip_code_invalid": {
+      "detail": "A empresa informada possui um CEP inválido. Por favor, verifique o número digitado e tente novamente.",
+      "status_code": 422
+    },
+    "zip_code_not_found": {
+      "detail": "O CEP informado não foi encontrado. Por favor, verifique o número digitado e tente novamente.",
+      "status_code": 404
+    },
+    "search_criteria_too_short": {
+      "detail": "Por favor, tente inserir pelo menos 4 caracteres na busca.",
+      "status_code": 422
+    },
+    "no_partners_found": {
+      "detail": "Não encontramos nenhum parceiro correspondente à sua pesquisa",
+      "status_code": 404
+    },
+    "csv_is_not_valid_columns": {
+      "detail": "Algumas colunas do arquivo CSV não são válidas. Por favor, verifique as colunas e tente novamente.",
+      "status_code": 422
+    },
+    "csv_is_not_valid_rows": {
+      "detail": "Algumas linhas do arquivo CSV não são válidas. Por favor, verifique as linhas e tente novamente.",
+      "status_code": 422
+    }
+  },
+  "validation": {
+    "partner_cnpj_is_not_valid": {
+      "message": "A empresa informada possui um CNPJ inválido. Por favor, verifique o número digitado e tente novamente.",
+      "status": false
+    },
+    "partner_zip_code_is_not_found": {
+      "message": "O CEP informado não foi encontrado. Por favor, verifique o número digitado e tente novamente.",
+      "status": false
+    },
+    "partner_is_valid": {
+      "message": "Validado!",
+      "status": true
+    },
+    "partner_not_updated": {
+      "message": "Parceiro não foi atualizado/criado com sucesso",
+      "status": false
+    }
+  }
+}

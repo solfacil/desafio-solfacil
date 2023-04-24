@@ -1,103 +1,30 @@
 import logging
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException
+
+from src.utils.messages import Message
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+messages = Message()
+
 
 def response_exception(e):
-    if isinstance(e, HTTPException):
-        logger.error(
-            "status_code: {}, message: {}".format(e.status_code, e.detail)
-        )
-        raise e
-    elif "unique constraint" in str(e).lower():
-        handle_unique_constraint_error(e)
-    elif "not found" in str(e).lower():
-        handle_not_found_error(e)
-    elif "csv is not formated" in str(e).lower():
-        handle_csv_not_formated(e)
-    elif "cep invalid" in str(e).lower():
-        handle_cep_invalid(e)
-    elif "cnpj invalid" in str(e).lower():
-        handle_cnpj_invalid(e)
+    if "unique constraint" in str(e).lower():
+        message = messages.get("unique_constraint_error")
+    elif "Not Found Partner" in str(e):
+        message = messages.get("not_found_partner")
+    elif "Invalid Zip Code" in str(e):
+        message = messages.get("zip_code_invalid")
+    elif "Invalid CNPJ" in str(e):
+        message = messages.get("cnpj_invalid")
+    elif "CSV is not valid columns" in str(e):
+        message = messages.get("csv_is_not_valid_columns")
+    elif "CSV is not valid rows" in str(e):
+        message = messages.get("csv_is_not_valid_rows")
+    elif not isinstance(e, HTTPException):
+        message = messages.get("internal_server_error")
     else:
-        logger.error(
-            "status_code: {}, message: {}".format(
-                status.HTTP_500_INTERNAL_SERVER_ERROR, str(e)
-            )
-        )
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail={"message": "Internal server error"},
-        )
-
-
-def handle_unique_constraint_error(e):
-    logger.error(
-        "status_code: {}, message: {}".format(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, str(e)
-        )
-    )
-    raise HTTPException(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        detail={"message": "Este parceiro ja existe na tabela"},
-    )
-
-
-def handle_not_found_error(e):
-    logger.error(
-        "status_code: {}, message: {}".format(
-            status.HTTP_404_NOT_FOUND, str(e)
-        )
-    )
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
-        detail={"message": "Este parceiro não existe na tabela"},
-    )
-
-
-def handle_csv_not_formated(e):
-    logger.error(
-        "status_code: {}, message: {}".format(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, str(e)
-        )
-    )
-    raise HTTPException(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        detail={
-            "message": "O formato deste arquivo CSV não está correto. \
-Por favor, verifique as colunas e tente novamente."
-        },
-    )
-
-
-def handle_cnpj_invalid(e):
-    logger.error(
-        "status_code: {}, message: {}".format(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, str(e)
-        )
-    )
-    raise HTTPException(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        detail={
-            "message": "A empresa informada possui um CNPJ inválido. \
-Por favor, verifique o número digitado e tente novamente."
-        },
-    )
-
-
-def handle_cep_invalid(e):
-    logger.error(
-        "status_code: {}, message: {}".format(
-            status.HTTP_422_UNPROCESSABLE_ENTITY, str(e)
-        )
-    )
-    raise HTTPException(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        detail={
-            "message": "A empresa informada possui um CEP inválido. \
-Por favor, verifique o número digitado e tente novamente."
-        },
-    )
+        raise e
+    raise HTTPException(**message)

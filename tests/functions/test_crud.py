@@ -1,37 +1,39 @@
 from src.database.crud import create_partner, list_partners
-from src.database.schemas import SchemaJsonParceiro
+from src.database.schemas import PartnerJsonSchema
 from src.database.search import consult_partner_cnpj
 
 
-def test_novo_usuario_gera_uuid(client, db, mock_cep_response):
+def test_new_user_generates_uuid(client, db, mock_zipcode_response):
     cnpj_test = "84529322000112"
-    cep_test = "01156325"
-    parceiro = SchemaJsonParceiro(**{"cnpj": cnpj_test, "cep": cep_test})
+    zip_code_test = "01156325"
+    partner = PartnerJsonSchema.parse_obj(
+        {"cnpj": cnpj_test, "cep": zip_code_test}
+    )
 
-    novo_parceiro = create_partner(db, parceiro)
+    new_partner = create_partner(db, partner)
 
-    assert novo_parceiro.id_parceiro != ""
-    assert novo_parceiro.cnpj == cnpj_test
+    assert new_partner.partner_id != ""
+    assert new_partner.cnpj == cnpj_test
 
 
-def test_consultar_parceiros_cadastrados_retorna_parceiros_teste(
-    client, db, parceiros_teste
+def test_list_registered_partners_returns_test_partners(
+    client, db, test_partners
 ):
-    parceiros = list_partners(db)
+    partners = list_partners(db)
 
-    assert len(parceiros) == 3
-
-
-def test_consultar_limitar_e_paginar_resposta(client, db, parceiros_teste):
-    parceiros = list_partners(db, 1, 2)
-
-    assert len(parceiros) == 2
+    assert len(partners) == 3
 
 
-def test_deve_ser_possivel_consultar_um_parceiro_pelo_cnpj(
-    client, db, parceiros_teste
+def test_limit_and_paginate_response(client, db, test_partners):
+    partners = list_partners(db, 1, 2)
+
+    assert len(partners) == 2
+
+
+def test_it_should_be_possible_to_consult_a_partner_by_cnpj(
+    client, db, test_partners
 ):
-    parceiro = consult_partner_cnpj(db, "69971725000123")
+    partner = consult_partner_cnpj(db, "69971725000123")
 
-    assert parceiro
-    assert parceiro.cnpj == "69971725000123"
+    assert partner
+    assert partner.cnpj == "69971725000123"

@@ -19,8 +19,8 @@ async def root():
     return {"python_version": python_version()}
 
 
-app.include_router(crud.router, tags=["Crud Parceiros"], prefix="/parceiros")
+app.include_router(crud.router, tags=["Crud Parceiros"], prefix="/partners")
 app.include_router(
-    search.router, tags=["Pesquisa Parceiros"], prefix="/buscar"
+    search.router, tags=["Pesquisa Parceiros"], prefix="/search"
 )
 app.include_router(upload.router, tags=["Upload Parceiros"], prefix="/upload")

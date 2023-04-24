@@ -6,44 +6,48 @@ from sqlalchemy.orm import Session
 from src.database import get_db, schemas
 from src.database.search import consult_partner_cnpj, search_partner
 from src.utils.exceptions import response_exception
+from src.utils.messages import Message
 
 router = APIRouter()
 
+messages = Message()
 
-@router.get("/{cnpj}", response_model=schemas.SchemaParceiro)
+
+@router.get(
+    "/{cnpj}",
+    response_model=schemas.PartnerSchema,
+    status_code=status.HTTP_200_OK,
+)
 def buscar_cnpj_parceiro(cnpj: str, db: Session = Depends(get_db)):
     try:
-        parceiro = consult_partner_cnpj(db, cnpj)
-        return parceiro.serialize()
+        partner = consult_partner_cnpj(db, cnpj)
+        return partner.serialize()
     except Exception as e:
         return Response(content=response_exception(*e.args))
 
 
-@router.get("/", response_model=List[schemas.SchemaParceiro])
+@router.get(
+    "/",
+    response_model=List[schemas.PartnerSchema],
+    status_code=status.HTTP_200_OK,
+)
 def pesquisar_parceiros(
-    criterio: str,
+    search_criteria: str,
     skip: int = 0,
     limit: int = 10,
     db: Session = Depends(get_db),
 ):
     try:
-        if len(criterio) <= 3:
-            mensagem = (
-                "Por favor, tente inserir pelo menos 4 caracteres na busca."
-            )
+        if len(search_criteria) <= 3:
+            raise HTTPException(**messages.get("search_criteria_too_short"))
+
+        partners = search_partner(db, search_criteria, skip, limit)
+
+        if len(partners) == 0:
             raise HTTPException(
-                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-                detail={"message": mensagem},
+                **messages.get("no_partners_found"),
             )
-        parceiros = search_partner(db, criterio, skip, limit)
-        if len(parceiros) == 0:
-            mensagem = (
-                "Não encontramos nenhum parceiro correspondente à sua pesquisa"
-            )
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail={"message": mensagem},
-            )
-        return [p.serialize() for p in parceiros]
+
+        return [p.serialize() for p in partners]
     except Exception as e:
         return Response(content=response_exception(e))

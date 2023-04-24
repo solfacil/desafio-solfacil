@@ -12,50 +12,56 @@ def get_id():
     return str(uuid.uuid4())
 
 
-class SerializerParceiro(object):
+class SerializerPartner(object):
     def serialize(self):
-        parceiro = {c: getattr(self, c) for c in inspect(self).attrs.keys()}
-        cep_info = {
-            c: getattr(self.cep_info, c)
-            for c in inspect(self.cep_info).attrs.keys()
+        partner = {c: getattr(self, c) for c in inspect(self).attrs.keys()}
+        zip_code_info = {
+            c: getattr(self.zip_code_info, c)
+            for c in inspect(self.zip_code_info).attrs.keys()
         }
-        parceiro["cep_info"] = cep_info
+        partner["zip_code_info"] = zip_code_info
 
-        return parceiro
+        return partner
 
 
-class Parceiro(Base):
-    __tablename__ = "tb_parceiros"
-    id_parceiro = Column(String, primary_key=True, default=get_id)
+class Partner(Base):
+    __tablename__ = "tb_partners"
+    partner_id = Column(String, primary_key=True, default=get_id)
     cnpj = Column(String(14), unique=True, nullable=False)
-    razao_social = Column(String(100))
-    nome_fantasia = Column(String(100))
-    telefone = Column(String(30))
+    company_name = Column(String(100))
+    trade_name = Column(String(100))
+    phone = Column(String(30))
     email = Column(String(50))
-    cep = Column(String(10), ForeignKey("tb_cep_info.cep"), nullable=False)
-    cep_info = relationship("CepInfo", foreign_keys=[cep], uselist=False)
-    data_atualizacao = Column(
+    zip_code = Column(
+        String(10),
+        ForeignKey("tb_zip_code_info.zip_code"),
+        nullable=False,
+    )
+    zip_code_info = relationship(
+        "ZipCodeInfo", foreign_keys=[zip_code], uselist=False
+    )
+    last_update = Column(
         DateTime(), default=datetime.now(), onupdate=datetime.now()
     )
 
     def serialize(self):
-        d = SerializerParceiro.serialize(self)
+        d = SerializerPartner.serialize(self)
         return d
 
 
-class CepInfo(Base):
-    __tablename__ = "tb_cep_info"
-    id_cep = Column(String, primary_key=True, default=get_id)
-    cep = Column(String(10), unique=True, nullable=False)
-    logradouro = Column(String(100), nullable=False)
-    complemento = Column(String(255), nullable=False)
-    bairro = Column(String(100), nullable=False)
-    localidade = Column(String(100), nullable=False)
-    uf = Column(String(5), nullable=False)
+class ZipCodeInfo(Base):
+    __tablename__ = "tb_zip_code_info"
+    zip_code_id = Column(String, primary_key=True, default=get_id)
+    zip_code = Column(String(10), unique=True, nullable=False)
+    street = Column(String(100), nullable=False)
+    complement = Column(String(255), nullable=False)
+    district = Column(String(100), nullable=False)
+    city = Column(String(100), nullable=False)
+    state = Column(String(5), nullable=False)
     ibge = Column(String(100), nullable=False)
     gia = Column(String(100), nullable=False)
-    ddd = Column(String(5), nullable=False)
+    area_code = Column(String(5), nullable=False)
     siafi = Column(String(100), nullable=False)
-    data_atualizacao = Column(
+    last_update = Column(
         DateTime(), default=datetime.now(), onupdate=datetime.now()
     )

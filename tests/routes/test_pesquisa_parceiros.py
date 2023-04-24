@@ -1,49 +1,48 @@
 from fastapi import status
 
+from src.utils.messages import Message
 
-def test_pesquisa_de_parceiros_para_apenas_um_parceiro(
-    client, parceiros_teste
-):
-    response = client.get("/buscar?criterio=69971725000123")
-    parceiros = response.json()
-
-    assert response.status_code == status.HTTP_200_OK
-    assert parceiros[0]["cnpj"] == "69971725000123"
+message = Message()
 
 
-def test_pesquisa_de_parceiros_para_mais_de_um_parceiro(
-    client, parceiros_teste
-):
-    response = client.get("/buscar?criterio=01156325")
-    parceiros = response.json()
+def test_search_partners_single_partner(client, test_partners):
+    response = client.get("/search?search_criteria=69971725000123")
+    partners = response.json()
 
     assert response.status_code == status.HTTP_200_OK
-    assert len(parceiros) == 3
+    assert partners[0]["cnpj"] == "69971725000123"
 
 
-def test_pesquisa_de_parceiros_para_nenhum_parceiro(client, parceiros_teste):
-    response = client.get("/buscar?criterio=84529322000112")
+def test_search_partners_multiple_partners(client, test_partners):
+    response = client.get("/search?search_criteria=01156325")
+    partners = response.json()
+
+    assert response.status_code == status.HTTP_200_OK
+    assert len(partners) == 3
+
+
+def test_search_partners_no_partner(client, test_partners):
+    response = client.get("/search?search_criteria=84529322000112")
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
 
-def test_pesquisa_de_parceiros_sem_parametro_correto(client, parceiros_teste):
-    response = client.get("/buscar?criterio=12")
+def test_search_partners_incorrect_parameter(client, test_partners):
+    response = client.get("/search?search_criteria=12")
 
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
 
 
-def test_consulta_parceiro_por_cnpj(client, parceiros_teste):
-    response = client.get("/buscar/69971725000123")
-    parceiro = response.json()
+def test_get_partner_by_cnpj(client, test_partners):
+    response = client.get("/search/69971725000123")
+    partner = response.json()
     assert response.status_code == status.HTTP_200_OK
-    assert parceiro["cnpj"] == "69971725000123"
-    assert parceiro["cep"] == "01156325"
+    assert partner["cnpj"] == "69971725000123"
+    assert partner["cep"] == "01156325"
 
 
-def test_consulta_cnpj_inexistente_retorna_404(client, parceiros_teste):
-    response = client.get("/buscar/84529322000112")
-    assert response.status_code == status.HTTP_404_NOT_FOUND
-    assert response.json() == {
-        "detail": {"message": "Este parceiro não existe na tabela"}
-    }
+def test_get_partner_nonexistent_cnpj_returns_404(client, test_partners):
+    response = client.get("/search/84529322000112")
+    msg = message.get("not_found_partner")
+    assert response.status_code == msg["status_code"]
+    assert response.json() == {"detail": msg["detail"]}

@@ -1,71 +1,77 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, Field, validator
 from validate_docbr import CNPJ
 
 from src.utils.exceptions import response_exception
 
 
-class SchemaJsonCepInfo(BaseModel):
-    cep: str
-    logradouro: str
-    complemento: str
-    bairro: str
-    localidade: str
-    uf: str
+class ZipCodeJsonSchema(BaseModel):
+    zip_code: str = Field(alias="cep")
+    street: str = Field(alias="logradouro")
+    complement: str = Field(alias="complemento")
+    district: str = Field(alias="bairro")
+    city: str = Field(alias="localidade")
+    state: str = Field(alias="uf")
     ibge: str
     gia: str
-    ddd: str
+    area_code: str = Field(alias="ddd")
     siafi: str
 
+    @validator("zip_code")
+    def format_zip_code(cls, value):
+        zip_code = "".join(filter(str.isdigit, value))
+        return zip_code
 
-class SchemaCepInfo(BaseModel):
-    cep: str
-    bairro: str
-    localidade: str
-    uf: str
-    data_atualizacao: datetime
+
+class ZipCodeSchema(BaseModel):
+    zip_code: str = Field(alias="cep")
+    district: str = Field(alias="bairro")
+    city: str = Field(alias="localidade")
+    state: str = Field(alias="uf")
+    last_update: datetime
 
     class Config:
+        allow_population_by_field_name = True
         orm_mode: True
 
 
-class SchemaUpdateParceiro(BaseModel):
-    razao_social: Optional[str]
-    nome_fantasia: Optional[str]
-    telefone: Optional[str]
+class PartnerUpdateSchema(BaseModel):
+    company_name: Optional[str] = Field(alias="razao_social")
+    trade_name: Optional[str] = Field(alias="nome_fantasia")
+    phone: Optional[str] = Field(alias="telefone")
     email: Optional[str]
-    cep: Optional[str]
+    zip_code: Optional[str] = Field(alias="cep")
 
-    @validator("cep")
-    def formata_cep(cls, value):
-        cep = "".join(filter(str.isdigit, value))
-        return cep
+    @validator("zip_code")
+    def format_zip_code(cls, value):
+        zip_code = "".join(filter(str.isdigit, value))
+        return zip_code
 
 
-class SchemaJsonParceiro(SchemaUpdateParceiro):
+class PartnerJsonSchema(PartnerUpdateSchema):
     cnpj: str
-    cep: str
+    zip_code: str = Field(alias="cep")
 
     @validator("cnpj")
     def validate_cnpj(cls, value):
         cnpj = "".join(filter(str.isdigit, value))
-        cnpj_verify = CNPJ()
-        if not cnpj_verify.validate(cnpj):
-            response_exception("cnpj invalid")
+        if not CNPJ().validate(cnpj):
+            response_exception("Invalid CNPJ")
         return cnpj
 
-    @validator("cep")
-    def formata_cep(cls, value):
-        cep = "".join(filter(str.isdigit, value))
-        return cep
+    @validator("zip_code")
+    def format_zip_code(cls, value):
+        zip_code = "".join(filter(str.isdigit, value))
+        return zip_code
 
 
-class SchemaParceiro(SchemaJsonParceiro):
-    id_parceiro: str
-    cep_info: SchemaCepInfo
-    data_atualizacao: datetime
+class PartnerSchema(PartnerJsonSchema):
+    partner_id: str = Field(alias="id_parceiro")
+    zip_code_info: ZipCodeSchema
+    last_update: datetime
 
     class Config:
+        allow_population_by_field_name = True
         orm_mode: True
