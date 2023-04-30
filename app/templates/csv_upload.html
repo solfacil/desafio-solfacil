@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h1>Create/Modify Partners</h1>
+
+  <form method="post" action="{% url 'upload_csv' %}" id="form_upload" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="csv_file" id="csv_file">
+      <button type="submit" id="upload" hidden >Create/Modify Partners</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+		  $(document).ready(function() {
+      $('#csv_file').on('change', function() {
+        // Get the selected file
+        const file = $(this).prop('files')[0];
+
+        // Check if the file is a CSV file
+        if (file.type === 'text/csv') {
+          // Enable the content to display when CSV file is uploaded
+          $('#upload').removeAttr('hidden');
+
+        } else {
+          alert('Please upload a CSV file.');
+          const fileInput = document.getElementById('csv_file');
+          fileInput.value = '';
+          // Disable the content to display when CSV file is uploaded
+          $('#upload').attr('hidden', true);
+        }
+      });
+    });
+	</script>
+ 
+{% endblock %}

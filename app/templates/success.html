@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    
+    {% if cnpj_success %}
+    <h3 style="color: chartreuse;"> Cnpj created/updated with Success!</h3>
+    
+    <ul>
+        {% for cnpj in cnpj_success %}
+            <li><span style="color: chartreuse;">CNPJ:</span> {{ cnpj }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if cnpj_error %}
+    <h3 style="color: crimson"> Error processing Cnpj(s), check if they have the required length of 14 digits</h3>
+    <ul>
+        {% for cnpj in cnpj_error %}
+            <li><span style="color:crimson">CNPJ:</span> {{ cnpj }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    
+{% endblock %}

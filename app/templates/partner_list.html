@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h1>Partner List</h1>
+  
+  <table>
+    <tr>
+      <th>CNPJ</th>
+      <th>Razao Social</th>
+      <th>Nome Fantasia</th>
+      <th>Telefone</th>
+      <th>Email</th>
+      <th>Cep</th>
+    </tr>
+    {% for partner in partners %}
+      <tr>
+        <td>{{ partner.cnpj }}</td>
+        <td>{{ partner.razao_social }}</td>
+        <td>{{ partner.nome_fantasia }}</td>
+        <td>{{ partner.telefone }}</td>
+        <td>{{ partner.email }}</td>
+        <td>{{ partner.cep }}</td>
+      </tr> 
+    {% endfor %}
+  </table>
+{% endblock %}

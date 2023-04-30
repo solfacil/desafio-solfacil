@@ -1,0 +1,35 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h1>Partner Address List</h1>
+  
+  <table style="width:100%">
+    <tr>
+      <th>Partner Cnpj</th>
+      <th>Cep</th>
+      <th>Complemento</th>
+      <th>Logradouro</th>
+      <th>Localidade</th>
+      <th>Uf</th>
+      <th>Ibge</th>
+      <th>Gia</th>
+      <th>DDD</th>
+      <th>Siafi</th>
+      
+    </tr>
+    {% for partner in partners %}
+      <tr>
+        <td>{{ partner.partner.cnpj }}</td>
+        <td>{{ partner.cep }}</td>
+        <td>{{ partner.complemento }}</td>
+        <td>{{ partner.logradouro }}</td>
+        <td>{{ partner.localidade }}</td>
+        <td>{{ partner.uf }}</td>
+        <td>{{ partner.ibge }}</td>
+        <td>{{ partner.gia }}</td>
+        <td>{{ partner.ddd }}</td>
+        <td>{{ partner.siafi }}</td>
+      </tr> 
+    {% endfor %}
+  </table>
+{% endblock %}

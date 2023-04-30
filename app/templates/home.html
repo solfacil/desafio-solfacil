@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>My App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="container">
+       
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'partners-list' %}">List Partners</a></li>
+                <li><a href="{% url 'upload_csv' %}">Upload Csv</a></li>
+                <li><a href="{% url 'partners-address-list' %}">List Partners Address</a></li>
+            </ul>
+        </nav>
+     
+        {% block content %}
+        <h1>Welcome to my app!</h1>
+        
+        <div id="buttons">
+            <form id="form-left" action="{% url 'partners-list' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">List all partners</button>
+            </form>
+            
+            <form action="{% url 'upload_csv' %}" method="get">
+                {% csrf_token %}
+                <button type="submit">Upload Csv to create/update Partners</button>
+            </form>
+        </div>
+        
+        {% endblock %}
+    </div>
+</body>
+</html>

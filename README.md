@@ -1,51 +1,60 @@
 # Desafio Solfácil
 
-## Apresentação do problema
+## Installation
+    
+    You can run the project by 2 ways:
 
-Nosso cliente interno precisa atualizar rotineiramente os dados de nossos parceiros. O problema acontece que para atualizar, ele precisa entrar na página de edição de cada um dos parceiros. Isso é um trabalho muito tedioso e demorado.
+## 1 
+- Install docker in your computer 
+- run `docker-compose up`
 
-Precisamos dar uma solução para este problema!
+## 2 -     
+1. Create a virtual environment and activate it.
+    - python -m venv myenv
+    - myenv\Scripts\activate.bat (Windows)
+    - source myenv/bin/activate (Linux)
+2. Install the requirements by running `pip install -r requirements.txt`.
+3. Run the makemigrations by running `python manage.py makemigrations`.
+4. Run the migrations by running `python manage.py migrate`.
+5. Run the server by running `python manage.py runserver`.
 
-Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote através de um CSV.
+## Usage
 
-[Baixe aqui um CSV de exemplo](assets/exemplo.csv)
+Access the website at `http://localhost:8000/`.
+ 
+You can navegate through the app and do all the actions there, but if
+you prefer you can access the following urls in any program like Postman
+to make the requests.
+ 
+## Requests:
 
-## Requisitos
+- Access Admin panel
 
-- Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
-- Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação;
-- Testes unitários e/ou de integração.
+    First you will have to create a superuser, for that use the command `python manage.py createsuperuser`.
 
-## Bônus
+    Follow the prompts to enter a username, email, and password for the superuser account.
 
-- Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
-- Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
-- Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
-- Interface em HTML
-- Documentação dinamica (Swagger/Openapi)
+    Then make the request to the admin url
+    ```
+    GET http://localhost:8000/admin/
+    ```
+    Enter the username and password for the superuser account to log in to the admin panel.
 
-## Tecnologias usadas
+- Access the Partners List 
+    ```
+    GET http://localhost:8000/partners/
+    ```
+- Access the Partners Address List 
+    ```
+    GET http://localhost:8000/partners/address/
+    ```
+- Upload CSV
 
-- Preferencialmente utilizar Python como linguagem;
+    That is a little trickier.. 
+    In Postman on the request body, click "form-data", hover over the "key" input field, and find the hidden dropdown that says "Text". Click "Text", and then change it to say "File"
 
-## Dicas
-
-- Aproveite os recursos das ferramentas que você está usando. Diversifique e mostre que você domina cada uma delas;
-- Tente escrever seu código o mais claro e limpo possível. Código deve ser legível assim como qualquer texto dissertativo;
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes;
-- OBS: Não precisa criar um front-end para aplicação.
-
-## Objetivo
-
-- O objetivo é avaliar sua experiência em escrever código de fácil manutenção e alta coesão.
-
-## Envio
-
-Para nos enviar seu código, faça um fork desse repositório e nos envie um pull-request.
-
-
-Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
-
-Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+    for the last, in the Key field, put 'csv_file' and make the POST request
+    ```
+    POST http://localhost:8000/uploadCsv/
+    ```
+    ![alt text](./Postman_Example.png)
