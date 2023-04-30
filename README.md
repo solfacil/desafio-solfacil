@@ -2,7 +2,7 @@
 
 ## Installation
     
-    You can run the project by 2 ways:
+You can run the project by 2 ways:
 
 ## 1 
 - Install docker in your computer 
@@ -10,9 +10,9 @@
 
 ## 2 -     
 1. Create a virtual environment and activate it.
-    - python -m venv myenv
-    - myenv\Scripts\activate.bat (Windows)
-    - source myenv/bin/activate (Linux)
+    - `python -m venv venv`
+    - `venv\Scripts\activate.bat` (Windows)
+    - `source myenv/bin/activate` (Linux)
 2. Install the requirements by running `pip install -r requirements.txt`.
 3. Run the makemigrations by running `python manage.py makemigrations`.
 4. Run the migrations by running `python manage.py migrate`.
