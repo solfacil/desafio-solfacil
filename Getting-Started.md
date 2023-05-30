@@ -1,6 +1,6 @@
-# SolFacil Challenge API
+# Challenge API
 
-Este projeto é uma API desenvolvida como solução para o desafio proposto pela SolFacil. A API permite gerenciar parceiros, incluindo funcionalidades como listar, criar, atualizar, deletar e pesquisar parceiros, bem como carregar parceiros a partir de um arquivo CSV.
+Este projeto é uma API desenvolvida como solução para o desafio proposto pela SolFacil e a SouPilar. A API permite gerenciar parceiros, incluindo funcionalidades como listar, criar, atualizar, deletar e pesquisar parceiros, bem como carregar parceiros a partir de um arquivo CSV.
 
 ## Requisitos
 

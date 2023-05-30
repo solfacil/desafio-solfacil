@@ -1,11 +1,10 @@
 [tool.poetry]
-name = "solfacil-challenge-ph"
+name = "challenge-ph"
 version = "0.1.0"
-description = "This is the solution to the solfacil challenge"
+description = "This is the solution to the challenge"
 authors = ["PHRaulino <phraulino@outlook.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "solfacil_challenge_ph"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
