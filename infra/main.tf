@@ -1,3 +1,17 @@
+terraform {
+  cloud {
+    organization = "phraulino"
+
+    workspaces {
+      name = "challenge-workspace"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 resource "aws_security_group" "api_security_group" {
   name        = "api_security_group"
   description = "Security Group for API"
