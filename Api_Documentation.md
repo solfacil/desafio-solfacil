@@ -95,6 +95,129 @@ null
 This operation does not require authentication
 </aside>
 
+<h1 id="parceiros-api-soupilar-challenge">Soupilar Challenge</h1>
+
+## vowel_count_soupilar_vowel_count_post
+
+<a id="opIdvowel_count_soupilar_vowel_count_post"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/soupilar/vowel_count', headers = headers)
+
+print(r.json())
+
+```
+
+`POST /soupilar/vowel_count`
+
+*Vowel Count*
+
+> Body parameter
+
+```json
+{
+  "words": [
+    "string"
+  ]
+}
+```
+
+<h3 id="vowel_count_soupilar_vowel_count_post-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[WordsCountSchema](#schemawordscountschema)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="vowel_count_soupilar_vowel_count_post-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="vowel_count_soupilar_vowel_count_post-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## sort_words_soupilar_sort_post
+
+<a id="opIdsort_words_soupilar_sort_post"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/soupilar/sort', headers = headers)
+
+print(r.json())
+
+```
+
+`POST /soupilar/sort`
+
+*Sort Words*
+
+> Body parameter
+
+```json
+{
+  "words": [
+    "string"
+  ],
+  "order": "string"
+}
+```
+
+<h3 id="sort_words_soupilar_sort_post-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[WordsSortSchema](#schemawordssortschema)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+null
+```
+
+<h3 id="sort_words_soupilar_sort_post-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Response|Inline|
+|422|[Unprocessable Entity](https://tools.ietf.org/html/rfc2518#section-10.3)|Validation Error|[HTTPValidationError](#schemahttpvalidationerror)|
+
+<h3 id="sort_words_soupilar_sort_post-responseschema">Response Schema</h3>
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
 <h1 id="parceiros-api-crud-parceiros">Crud Parceiros</h1>
 
 ## listar_parceiros_partners__get
@@ -838,6 +961,56 @@ continued
 |---|---|---|---|---|
 |msg|string|true|none|none|
 |type|string|true|none|none|
+
+<h2 id="tocS_WordsCountSchema">WordsCountSchema</h2>
+<!-- backwards compatibility -->
+<a id="schemawordscountschema"></a>
+<a id="schema_WordsCountSchema"></a>
+<a id="tocSwordscountschema"></a>
+<a id="tocswordscountschema"></a>
+
+```json
+{
+  "words": [
+    "string"
+  ]
+}
+
+```
+
+WordsCountSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|words|[string]|true|none|none|
+
+<h2 id="tocS_WordsSortSchema">WordsSortSchema</h2>
+<!-- backwards compatibility -->
+<a id="schemawordssortschema"></a>
+<a id="schema_WordsSortSchema"></a>
+<a id="tocSwordssortschema"></a>
+<a id="tocswordssortschema"></a>
+
+```json
+{
+  "words": [
+    "string"
+  ],
+  "order": "string"
+}
+
+```
+
+WordsSortSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|words|[string]|true|none|none|
+|order|string|false|none|none|
 
 <h2 id="tocS_ZipCodeSchema">ZipCodeSchema</h2>
 <!-- backwards compatibility -->
