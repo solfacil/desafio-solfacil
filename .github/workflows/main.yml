@@ -1,0 +1,54 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.4.6
+
+      - name: Terraform Initialize
+        run: cd infra && terraform init
+
+      - name: Terraform Validate
+        run: cd infra && terraform validate
+
+      - name: Terraform Plan
+        run: cd infra && terraform plan
+
+      - name: Terraform Apply
+        run: cd infra && terraform apply -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+
+      - name: Get EC2 Instance URL
+        run: |
+          INSTANCE_URL=$(cd infra && terraform output -chdir=infra instance_url)
+          echo "EC2 Instance URL: $INSTANCE_URL"
+
+      - name: Set EC2 Instance URL
+        run: |
+          INSTANCE_URL=$(cd infra && terraform output -chdir=infra instance_url)
+          echo "INSTANCE_URL=$INSTANCE_URL" >> $GITHUB_ENV
+
+      - name: Get EC2 Instance ID
+        run: |
+          INSTANCE_ID=$(cd infra && terraform output instance_id)
+          echo "EC2 Instance ID: $INSTANCE_ID"
+
+      - name: Set EC2 Instance ID
+        run: |
+          INSTANCE_ID=$(cd infra && terraform output -chdir=infra instance_id)
+          echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
