@@ -35,12 +35,12 @@ jobs:
 
       - name: Get EC2 Instance URL
         run: |
-          INSTANCE_URL=$(cd infra && terraform output -chdir=infra instance_url)
+          INSTANCE_URL=$(cd infra && terraform output instance_url)
           echo "EC2 Instance URL: $INSTANCE_URL"
 
       - name: Set EC2 Instance URL
         run: |
-          INSTANCE_URL=$(cd infra && terraform output -chdir=infra instance_url)
+          INSTANCE_URL=$(cd infra && terraform output instance_url)
           echo "INSTANCE_URL=$INSTANCE_URL" >> $GITHUB_ENV
 
       - name: Get EC2 Instance ID
@@ -50,5 +50,5 @@ jobs:
 
       - name: Set EC2 Instance ID
         run: |
-          INSTANCE_ID=$(cd infra && terraform output -chdir=infra instance_id)
+          INSTANCE_ID=$(cd infra && terraform output instance_id)
           echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
