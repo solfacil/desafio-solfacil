@@ -39,7 +39,7 @@ services:
     depends_on:
       - fastapi
     volumes:
-      - .:/src
+      - ./frontend:/src/frontend
     networks:
       - mynetwork
     
