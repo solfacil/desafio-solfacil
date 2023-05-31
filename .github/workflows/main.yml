@@ -23,6 +23,9 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.4.6
+      
+      - name: Terraform Initialize
+        run: cd infra && terraform login
 
       - name: Terraform Initialize
         run: cd infra && terraform init
