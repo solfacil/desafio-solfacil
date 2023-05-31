@@ -46,10 +46,10 @@ Projeto para atualização rotineira dos dados dos parceiros da Solfácil.
 ## Rodando a aplicação
 
 ```bash
-# Clone this repository
+# Faça o clone do repositório
 $ git clone https://github.com/IgorFreitasCruz/desafio_solfacil-api.git .
 
-# Access the project folder 
+# Acesso o diretório do projeot
 $ cd desafio_solfacil
 ```
 
@@ -58,7 +58,7 @@ $ cd desafio_solfacil
 ### Docker
 
 ```bash
-# run the container
+# Execute o container da aplicação
 $ docker-compose up -d
 ```
 
@@ -66,23 +66,49 @@ $ docker-compose up -d
 
 ## Acessando a aplicação
 
-Para ter acesso à aplicação va para ```http://localhost:8000/parceiros/upload```
+### Upload de arquivo csv
+
+Para ter acesso à aplicação acesse ```http://localhost:3000/```
+
+Selecione o arquivo formato ```.csv``` para upload
 
 <p align="center">
-   <img alt="admin" width="800" src="static/images/admin.png">
+   <img alt="admin" width="800" src="./assets/images/choose_file.png">
 </p>
 
----
-
-### Exemplo da API
-Para exibir os resultados formatados adicione `| python -m json.tool` no final do comando
-
-```bash
-$ curl -H "Content-Type: application/javascript" http://localhost:8000/parceiros/
-```
+O resultado mostrado em tela será similar ao ilustrado abaixo:
 
 <p align="center">
-   <img alt="api" width="800" src="static/images/api.png">
+   <img alt="admin" width="800" src="./assets/images/upload_message.png">
+</p>
+
+Caso ocorram erros de informação no arquivo os mesmos serão mostrados em tela.
+   - Emails inválidos não proibem a criação de um novo parceiro.
+   - CNPJ inválido não permite criar um novo parceiro
+
+### Listagem de parceiros
+
+Caso deseje listar todos os parceiros cadastrados acesse ```http://localhost:8000/parceiros/listagem```
+
+<p align="center">
+   <img alt="admin" width="800" src="./assets/images/listagem.png">
+</p>
+
+___
+
+### Exemplo da API
+
+<p align="center">
+   <img alt="api" width="800" src="./assets/images/swagger.png">
+</p>
+
+## Rodando os testes
+```bash
+# No diretório desafio_solfacil
+$ pytest
+```
+<p align="center">
+   <img alt="api" width="800" src="./assets/images/tests.png">
 </p>
 
 ---
