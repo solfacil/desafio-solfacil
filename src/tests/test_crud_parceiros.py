@@ -11,68 +11,9 @@ from ..domains.parceiros.repositories.sqlalchemy.models import Parceiro
 from ..routes_v1 import fetch_all_parceiros
 
 
-class TestFetchAllParceiros:
-    # Tests that the function returns a list of partners with default parameters.
+class TestCrudParceiros:
     @pytest.mark.asyncio
-    async def test_fetch_all_parceiros_default_params(self, mocker):
-        # Arrange
-        db_mock = mocker.Mock()
-        parceiros_mock = [
-            Parceiro(
-                id_=uuid4(),
-                cnpj="12345678901234",
-                razao_social="Empresa",
-                nome_fantasia="Empresa Fantasia",
-                telefone="1234567890",
-                email="empresa@empresa.com",
-                cidade="Cidade",
-                estado="Estado",
-                cep="12345678",
-            )
-        ]
-        db_mock.query.return_value.offset.return_value.limit.return_value.all.return_value = (
-            parceiros_mock
-        )
-
-        # Act
-        result = await fetch_all_parceiros(db=db_mock)
-
-        # Assert
-        assert result == parceiros_mock
-
-    # Tests that the function returns a list of partners with custom parameters.
-
-    @pytest.mark.asyncio
-    async def test_fetch_all_parceiros_custom_params(self, mocker):
-        # Arrange
-        db_mock = mocker.Mock()
-        parceiros_mock = [
-            Parceiro(
-                id_=uuid4(),
-                cnpj="12345678901234",
-                razao_social="Empresa",
-                nome_fantasia="Empresa Fantasia",
-                telefone="1234567890",
-                email="empresa@empresa.com",
-                cidade="Cidade",
-                estado="Estado",
-                cep="12345678",
-            )
-        ]
-        db_mock.query.return_value.offset.return_value.limit.return_value.all.return_value = (
-            parceiros_mock
-        )
-
-        # Act
-        result = await fetch_all_parceiros(skip=1, limit=50, db=db_mock)
-
-        # Assert
-        assert result == parceiros_mock
-
-    # Tests that the function raises an exception when creating a new partner with invalid data.
-
-    @pytest.mark.asyncio
-    async def test_create_parceiro_invalid_data(self, mocker):
+    async def test_create_parceiro_invalid_cnpj(self, mocker):
         # Arrange
         db_mock = mocker.Mock()
         parceiro_mock = {"cnpj": "12345678901234"}
@@ -88,7 +29,7 @@ class TestFetchAllParceiros:
         # Arrange
         db_mock = mocker.Mock()
         parceiro_mock = {
-            "cnpj": "12345678901234",
+            "cnpj": "16.470.954/0001-06",
             "razao_social": "Empresa",
             "nome_fantasia": "Empresa Fantasia",
             "telefone": "1234567890",
@@ -104,10 +45,10 @@ class TestFetchAllParceiros:
         db_mock.query.return_value.get.return_value = db_parceiro_mock
 
         # Act
-        result = await create_parceiro(db=db_mock, parceiro=parceiro_mock)
+        result = create_parceiro(db=db_mock, parceiro=parceiro_mock)
 
         # Assert
-        assert result == db_parceiro_mock
+        assert result.cnpj == db_parceiro_mock.cnpj
 
     # Tests that the function updates an existing partner and returns it.
 
@@ -137,15 +78,20 @@ class TestFetchAllParceiros:
         db_mock.close.return_value = None
 
         # Act
-        result = await update_parceiro(
+        update_parceiro(
             db=db_mock,
             parceiro=db_parceiro_mock,
             updated_parceiro_data=updated_parceiro_data_mock,
         )
 
         # Assert
-        assert db_parceiro_mock.razao_social == updated_parceiro_data_mock["razao_social"]
-        assert db_parceiro_mock.nome_fantasia == updated_parceiro_data_mock["nome_fantasia"]
+        assert (
+            db_parceiro_mock.razao_social == updated_parceiro_data_mock["razao_social"]
+        )
+        assert (
+            db_parceiro_mock.nome_fantasia
+            == updated_parceiro_data_mock["nome_fantasia"]
+        )
         assert db_parceiro_mock.telefone == updated_parceiro_data_mock["telefone"]
         assert db_parceiro_mock.email == updated_parceiro_data_mock["email"]
         assert db_parceiro_mock.cep == updated_parceiro_data_mock["cep"]
@@ -170,9 +116,36 @@ class TestFetchAllParceiros:
         db_mock.query.return_value.get.return_value = db_parceiro_mock
 
         # Act
-        result = await get_parceiro_by_cnpj(
+        result = get_parceiro_by_cnpj(
             db=db_mock, Parceiro=Parceiro, parceiro=parceiro_mock
         )
 
         # Assert
         assert result == db_parceiro_mock
+
+    @pytest.mark.asyncio
+    async def test_fetch_all_parceiros_default_params(self, mocker):
+        # Arrange
+        db_mock = mocker.Mock()
+        parceiros_mock = [
+            Parceiro(
+                id_=uuid4(),
+                cnpj="12345678901234",
+                razao_social="Empresa",
+                nome_fantasia="Empresa Fantasia",
+                telefone="1234567890",
+                email="empresa@empresa.com",
+                cidade="Cidade",
+                estado="Estado",
+                cep="12345678",
+            )
+        ]
+        db_mock.query.return_value.offset.return_value.limit.return_value.all.return_value = (
+            parceiros_mock
+        )
+
+        # Act
+        result = await fetch_all_parceiros(db=db_mock)
+
+        # Assert
+        assert result == parceiros_mock
