@@ -103,6 +103,8 @@ ___
 </p>
 
 ## Rodando os testes
+
+Para realizar os testes da aplilcação execute o comando abaixo
 ```bash
 # No diretório desafio_solfacil
 $ pytest
@@ -124,7 +126,7 @@ $ pytest
 
 ## Autor
 <a>
- <img style="border-radius: 50%;" src="static/images/igor.jpeg" width="100px;" alt=""/>
+ <img style="border-radius: 50%;" src="./assets/images/igor.jpeg" width="100px;" alt=""/>
  <br />
  <sub><b>Igor de Freitas Cruz</b></sub></a> 🚀
  <br />
