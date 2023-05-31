@@ -28,6 +28,20 @@ services:
       - .:/src
     networks:
       - mynetwork
+  
+  flask:
+    container_name: solfacil-front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - fastapi
+    volumes:
+      - .:/src
+    networks:
+      - mynetwork
     
 networks:
   mynetwork:

@@ -25,7 +25,7 @@ def get_db():
 
 
 @router.get(
-    "/",
+    "/listagem/",
     response_model=List[schemas.Parceiro],
     name="Listagem de parceiros",
     tags=["api v1 - listagem de parceiros"],
