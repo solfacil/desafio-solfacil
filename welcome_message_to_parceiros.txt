@@ -1,0 +1,4 @@
+notification for atendimento@soleterno.com: Olá, Sol Eterno LTDA. Seja bem vindo ao sistema da Solfácil
+notification for atendimentosoldamanha.com: Olá, Sol da Manhã LTDA. Seja bem vindo ao sistema da Solfácil
+notification for atendimentosolforte.com: Olá, Sol Forte LTDA. Seja bem vindo ao sistema da Solfácil
+notification for atendimento@solenergia.com: Olá, Sol Energia LTDA. Seja bem vindo ao sistema da Solfácil

@@ -1,51 +1,111 @@
-# Desafio Solfácil
+<!-- Title -->
 
-## Apresentação do problema
+<h1 align="center">
+   Solfácil
+</h1>
 
-Nosso cliente interno precisa atualizar rotineiramente os dados de nossos parceiros. O problema acontece que para atualizar, ele precisa entrar na página de edição de cada um dos parceiros. Isso é um trabalho muito tedioso e demorado.
+<!-- Description -->
 
-Precisamos dar uma solução para este problema!
+<h3 align="center">
+   Projeto de atualização em lote de parceiros via API
+</h3>
 
-Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote através de um CSV.
+<br>
 
-[Baixe aqui um CSV de exemplo](assets/exemplo.csv)
+<!-- Table of content -->
 
-## Requisitos
+Conteúdos
+=================
+- [Sobre o projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Rodando a aplicação](#rodando-a-aplicação)
+   - [Docker](#docker)
+- [Exemplo API](#exemplo-da-api)
+- [Tecnologias utilizadas no projeto](#tecnologias-utilizadas-no-projeto)
+- [Autor](#autor)
 
-- Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
-- Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação;
-- Testes unitários e/ou de integração.
+---
 
-## Bônus
+## 💻 Sobre o projeto
 
-- Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
-- Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
-- Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
-- Interface em HTML
-- Documentação dinamica (Swagger/Openapi)
+Projeto para atualização rotineira dos dados dos parceiros da Solfácil.
 
-## Tecnologias usadas
+<p align="center">
+   <img alt="Solfácil" width="800" src="./assests/images/solfacil_logo.png">
+</p>
 
-- Preferencialmente utilizar Python como linguagem;
+---
 
-## Dicas
+## Funcionalidades
 
-- Aproveite os recursos das ferramentas que você está usando. Diversifique e mostre que você domina cada uma delas;
-- Tente escrever seu código o mais claro e limpo possível. Código deve ser legível assim como qualquer texto dissertativo;
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes;
-- OBS: Não precisa criar um front-end para aplicação.
+- [x] Endpoint para upload de arquivo csv (criar ou atualizar parceiro)
+- [x] Endpoint para listagem dos parceiros
 
-## Objetivo
+---
 
-- O objetivo é avaliar sua experiência em escrever código de fácil manutenção e alta coesão.
+## Rodando a aplicação
 
-## Envio
+```bash
+# Clone this repository
+$ git clone https://github.com/IgorFreitasCruz/desafio_solfacil-api.git .
 
-Para nos enviar seu código, faça um fork desse repositório e nos envie um pull-request.
+# Access the project folder 
+$ cd desafio_solfacil
+```
 
+---
 
-Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
+### Docker
 
-Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+```bash
+# run the container
+$ docker-compose up -d
+```
+
+---
+
+## Acessando a aplicação
+
+Para ter acesso à aplicação va para ```http://localhost:8000/parceiros/upload```
+
+<p align="center">
+   <img alt="admin" width="800" src="static/images/admin.png">
+</p>
+
+---
+
+### Exemplo da API
+Para exibir os resultados formatados adicione `| python -m json.tool` no final do comando
+
+```bash
+$ curl -H "Content-Type: application/javascript" http://localhost:8000/parceiros/
+```
+
+<p align="center">
+   <img alt="api" width="800" src="static/images/api.png">
+</p>
+
+---
+
+## Tecnologias utilizadas no projeto
+
+-   FastAPI
+-   Flask
+-   Docker
+-   Postgresql
+
+---
+
+## Autor
+<a>
+ <img style="border-radius: 50%;" src="static/images/igor.jpeg" width="100px;" alt=""/>
+ <br />
+ <sub><b>Igor de Freitas Cruz</b></sub></a> 🚀
+ <br />
+
+[![Linkedin Badge](https://img.shields.io/badge/-Igor-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/igorfreitascruz/)](https://www.linkedin.com/in/igorfreitascruz/)
+[![Apple Badge](https://img.shields.io/badge/-igor.freitas.cruz@icloud.com-c14438?style=flat-square&logo=iCloud&logoColor=white&link=mailto:igor.freitas.cruz@icloud.com)](mailto:igor.freitas.cruz@icloud.com)
+
+---
+
+Made with ❤️ by Igor Cruz 👋🏻 [Contact me!](https://www.linkedin.com/in/igorfreitascruz/)

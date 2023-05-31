@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgresql:
+    container_name: solfacil-db
+    image: 'bitnami/postgresql:latest'
+    environment:
+      - POSTGRESQL_USERNAME=solfacil
+      - POSTGRESQL_PASSWORD=solfacil
+      - POSTGRESQL_DATABASE=solfacil_db
+    ports:
+      - 5555:5432
+    volumes:
+      - ./src:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  fastapi:
+    container_name: solfacil-api
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgresql
+    volumes:
+      - .:/src
+    networks:
+      - mynetwork
+    
+networks:
+  mynetwork:
