@@ -102,6 +102,8 @@ ___
    <img alt="api" width="800" src="./assets/images/swagger.png">
 </p>
 
+---
+
 ## Rodando os testes
 
 Para realizar os testes da aplilcação execute o comando abaixo
