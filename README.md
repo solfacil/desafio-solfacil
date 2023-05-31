@@ -10,6 +10,10 @@
    Projeto de atualização em lote de parceiros via API
 </h3>
 
+<p align="center">
+   <img alt="Solfácil" width="800" src="./assets/images/solfacil_logo.png">
+</p>
+
 <br>
 
 <!-- Table of content -->
@@ -29,10 +33,6 @@ Conteúdos
 ## 💻 Sobre o projeto
 
 Projeto para atualização rotineira dos dados dos parceiros da Solfácil.
-
-<p align="center">
-   <img alt="Solfácil" width="800" src="./assests/images/solfacil_logo.png">
-</p>
 
 ---
 
