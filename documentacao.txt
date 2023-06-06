@@ -1,0 +1,13 @@
+Bom dia.
+
+Este desafio foi desenvolvido utilizando Python e o framework Django.
+
+Para o seu desenvolvimento, foram utilizadas algumas tecnologias,
+por exemplo: djang-reskt-framework, docker e swagger.
+
+Para executar o projeto:
+1º - Estar na rais do projeto onde está os arquivos: Dockerfile e docker-compose.yml
+2º - Verifique se você tem o docker instalado no seu computador, caso não tenha, instale
+3º - Após isso, abra o terminal e execute: sudo docker-compose up
+4º - Acesso a url: http://localhost:8000/swagger/ e tenha acesso a documentação da API
+5º - Encontre o endpoint '/cliente/importar_csv/' e insira o arquivo do tipo csv
