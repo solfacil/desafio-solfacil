@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:8.0.21
+    ports:
+      - "33306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: docker
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    volumes:
+      - ./db/mysql/db:/var/lib/mysql/
+    networks:
+      - aplicacao-network
+  app:
+    build: .
+    env_file:
+      - .env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: docker
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_HOST: db
+    networks:
+      - aplicacao-network
+    depends_on:
+      - db
+
+networks:
+  aplicacao-network:

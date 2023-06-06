@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'desafioSolfacil.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'desafiosolfacil',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'docker',
+        'USER': 'docker',
+        'PASSWORD': 'docker', 
+        'HOST': 'db',
+        'PORT': 3306,
     }
 }
 
