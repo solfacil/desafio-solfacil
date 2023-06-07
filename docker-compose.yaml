@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  postgres12a:
+    image: postgres:12-alpine
+    container_name: postgres12a
+    restart: unless-stopped
+    mem_limit: 1024m
+    mem_reservation: 128m
+    environment:
+      - POSTGRES_DB=parceiros
+      - POSTGRES_PASSWORD=fastapi123
+      - POSTGRES_USER=fastapiuser
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5430:5432"
+    volumes:
+      - ${PWD}/pg_data:/var/lib/postgresql/data/pgdata
+    networks:
+      - networdapi
+
+  solfacil_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: solfacil_api
+    restart: unless-stopped
+    mem_limit: 1024m
+    mem_reservation: 128m
+    ports:
+      - "8000:8000"
+    networks:
+      - networdapi
+    depends_on:
+      - postgres12a
+    entrypoint: ["/app/entrypoint.sh"]
+
+  html_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.html_app
+    container_name: html_api
+    mem_limit: 256m
+    mem_reservation: 128m
+    ports:
+      - "8080:80"
+
+networks:
+  networdapi:
+    driver: bridge

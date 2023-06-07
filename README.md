@@ -49,3 +49,23 @@ Para nos enviar seu código, faça um fork desse repositório e nos envie um pul
 Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
 
 Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+
+# Como rodar ?
+
+```shell
+docker compose up
+```
+
+# Como rodar os testes ?
+
+```shel
+poetry run pytest
+``` 
+
+# Endereço frontend:
+
+http://localhost:8080
+
+# Endereço Swagger:
+
+http://localhost:8000/docs
