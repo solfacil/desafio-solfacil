@@ -2,7 +2,7 @@
 from app import  api, database
 from fastapi import FastAPI, File, UploadFile
 
-app = FastAPI(title="FastAPI, Docker, and Traefik")
+app = FastAPI(title="Solfacil Challenge")
 
 @app.get("/partners")
 def get():

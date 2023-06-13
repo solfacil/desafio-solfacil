@@ -65,3 +65,17 @@ def test_get_users_to_send_emails():
     assert 1 == len(result)
 
     database.clean_db()
+
+def test_upsert_email_has_send():
+    data = [{
+        "CNPJ": "12345678901234",
+        "Razão Social": "Empresa One",
+        "Nome Fantasia": "Empresa One LTDA",
+        "Telefone": "(41) 99999-9999",
+        "Email": "testando@test.com.br",
+        "CEP": "11111-111",
+    }]
+
+    database.upsert_partners(data)
+    database.upsert_email_has_send([{"cnpj": "12345678901234"}])
+    database.clean_db()
