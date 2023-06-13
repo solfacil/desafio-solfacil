@@ -10,42 +10,36 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 
 [Baixe aqui um CSV de exemplo](assets/exemplo.csv)
 
-## Requisitos
+## Execução
 
-- Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
-- Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação;
-- Testes unitários e/ou de integração.
+Rodando via taskfile
+```
+task run:docker
+```
+Execução com docker-compose
 
-## Bônus
+Para executar direto no docker-compose, basta executar os seguintes comandos
 
-- Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
-- Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
-- Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
-- Interface em HTML
-- Documentação dinamica (Swagger/Openapi)
+```
+docker-compose build 
+docker-compose up 
+```
 
-## Tecnologias usadas
+Rodando testes localmente via taskfile
+```
+task local:test
+```
 
-- Preferencialmente utilizar Python como linguagem;
+## Comportamento
 
-## Dicas
+A aplicação roda na porta 8008 com o docker. Além disso só inserimos no banco de dados quando o usuário possui um email valido e um cnpj de 14 números
 
-- Aproveite os recursos das ferramentas que você está usando. Diversifique e mostre que você domina cada uma delas;
-- Tente escrever seu código o mais claro e limpo possível. Código deve ser legível assim como qualquer texto dissertativo;
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes;
-- OBS: Não precisa criar um front-end para aplicação.
+Existem dois endpoints
 
-## Objetivo
+Retorno de todos os registros do banco de dados
+![image](https://github.com/Fernando-Erd/desafio-solfacil/assets/23130033/c7a5d95a-fdec-4029-8485-8542bd42c3c5)
 
-- O objetivo é avaliar sua experiência em escrever código de fácil manutenção e alta coesão.
+Inserção/Atualização de registros via CSV
+![image](https://github.com/Fernando-Erd/desafio-solfacil/assets/23130033/58bb6258-cc68-44fd-999c-06cee8e01cd3)
 
-## Envio
-
-Para nos enviar seu código, faça um fork desse repositório na sua conta pessoal e nos envie um pull-request (conta pessoal).
-
-
-Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
-
-Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+Documentação: http://localhost:8008/docs#/
