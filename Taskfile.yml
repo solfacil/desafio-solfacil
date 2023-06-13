@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+  run:docker:
+    desc: "Run program in docker"
+    cmds:
+      - docker-compose down --volumes
+      - docker-compose build 
+      - docker-compose up -d postgresql
+      - docker-compose up web
+
+  test:local:
+    desc: "Run test locally"
+    cmds:
+      - docker-compose down --volumes
+      - docker-compose up -d postgresql
+      - source .env.test
+      - sleep 3
+      - pytest tests/*
