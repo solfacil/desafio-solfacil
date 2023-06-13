@@ -11,9 +11,12 @@ tasks:
 
   test:local:
     desc: "Run test locally"
+    env:
+      DATABASE_HOST: "localhost"
+      DATABASE_PORT: "5431"
     cmds:
       - docker-compose down --volumes
       - docker-compose up -d postgresql
       - source .env.test
-      - sleep 3
+      - sleep 5
       - pytest tests/*
