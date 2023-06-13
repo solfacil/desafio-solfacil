@@ -42,4 +42,4 @@ Retorno de todos os registros do banco de dados
 Inserção/Atualização de registros via CSV
 ![image](https://github.com/Fernando-Erd/desafio-solfacil/assets/23130033/58bb6258-cc68-44fd-999c-06cee8e01cd3)
 
-
+Documentação: http://localhost:8008/docs#/
