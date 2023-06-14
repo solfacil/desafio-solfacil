@@ -11,10 +11,13 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 [Baixe aqui um CSV de exemplo](assets/exemplo.csv)
 
 ## Requisitos
-
+- Todas os endpoints de criação e consulta devem rebecer um token "Authorization" no header;
+- Criar um endpoint para gerar token que será utilizado nas outras rotas;
 - Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
 - Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação;
+- Ter trativas para possíveis erros de negócio ou sistema.
+- Estruturar e organizar os arquivos do projeto de forma que fique fácil o entendimento e a responsabilidade de cada um no sistema.
+- Documentação de como rodar aplicação e os testes;
 - Testes unitários e/ou de integração.
 
 ## Bônus
@@ -23,8 +26,8 @@ Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote 
 - Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
 - Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
 - Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
-- Interface em HTML
 - Documentação dinamica (Swagger/Openapi)
+- Subir a aplicação em algum cloud provider (GCP, AWS , Heroku)
 
 ## Tecnologias usadas
 
