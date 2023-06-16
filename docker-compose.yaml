@@ -1,0 +1,39 @@
+version: '3'
+services:
+    api:
+        env_file:
+          - ./.env
+        logging:
+          driver: json-file
+        build:
+          context: ./docker/api/
+          dockerfile: Dockerfile
+        volumes:
+          - ./app/:/code/app
+        restart: on-failure
+        ports:
+          - "9092:9092"
+        networks:
+          - app-network
+        depends_on:
+          - mysql
+        links:
+          - mysql
+    mysql:
+        image: mariadb
+        logging:
+          driver: none
+        environment:
+          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+          MYSQL_DATABASE: ${MYSQL_DATABASE}
+          MYSQL_USER: ${MYSQL_USERNAME}
+          MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+          - ./database/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+          - ./database/mysql_data/:/var/lib/mysql/
+          - ./database/mysql/migration.sql:/docker-entrypoint-initdb.d/migration.sql
+        networks:
+          - app-network
+networks:
+  app-network:
+    driver: bridge

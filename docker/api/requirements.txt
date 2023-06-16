@@ -1,0 +1,12 @@
+fastapi
+pydantic
+uvicorn
+mysqlclient
+python-multipart
+sqlalchemy
+jinja2
+rich
+cpf-cnpj-validate
+email-validator
+pytest
+httpx==0.22.0
