@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Desafio Solfacil</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/223438.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
@@ -38,13 +39,14 @@
             </div>
             <form id="csvForm" method="POST" enctype="multipart/form-data">
                 <div class="row g-3 align-items-center">
-                    <div class="col-auto">
+                    <div class="col-auto mb-4">
                         <label for="formFile" class="form-label">Select CSV file to import</label>
                     </div>
                     <div class="col-8">
                         <input class="form-control" type="file" name="upload_file" id="formFile" required>
+                        <div id="emailHelp" class="form-text">Click <a href="{{ url_for('static', path='/exemplo.csv') }}" title="Model file">Here</a> to download model file</div>
                     </div>
-                    <div class="col-auto ms-md-auto">
+                    <div class="col-auto ms-md-auto mb-4">
                         <button type="button" onclick="submitForm()" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
