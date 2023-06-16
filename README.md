@@ -59,3 +59,5 @@ Para executar os testes criados para o sistema é necessário acessar o contâin
 $ docker exec -it nome_do_container bash
 $ pytest -v
 ```
+
+Um grande abraço, aproveitem... :)
