@@ -1,4 +1,10 @@
-# Desafio Solfácil
+# Importação de clientes para parceiros
+
+Criação de API e interface web para importação de clientes em arquivo no formato CSV.
+
+O sistema utiliza uma API externa com para obtenção de dados de endereço por meio de um CEP [Viacep](https://viacep.com.br/)
+
+![Captura de tela de 2023-06-16 15-48-24](https://github.com/ALCTorres/desafio-solfacil/assets/32714168/3f0d7a97-ff51-493f-8bed-7853d5873afc)
 
 ## Apresentação do problema
 
@@ -8,44 +14,50 @@ Precisamos dar uma solução para este problema!
 
 Nossa equipe de produtos pensou que poderíamos fazer uma atualização em lote através de um CSV.
 
-[Baixe aqui um CSV de exemplo](assets/exemplo.csv)
+Para maiores informações sobre o escopo do projeto, acesse a [descrição completa](assets/README.md)
 
-## Requisitos
+## Recursos utilizados
 
-- Criar um endpoint que irá receber um CSV por upload e ao processar este CSV, vamos atualizar um parceiro já existente e/ou criar um novo parceiro;
-- Criar um endpoint de listagem dos parceiros;
-- Documentação de como rodar aplicação;
-- Testes unitários e/ou de integração.
+- [Python](https://www.python.org/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [MariaDB](https://mariadb.org/)
+- [Sqlite](https://www.sqlite.org/index.html) - Utilizado no conjunto de testes do App
+- [Docker](https://www.docker.com/)
+- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
-## Bônus
+O conjunto de recursos Python, FastAPI e Bootstrap formam o App, ou dashboard, e a API criados para o projeto.
 
-- Validações dos campos, não queremos que um CPF entre no lugar de um CNPJ;
-- Seria interessante se tivéssemos as informações de Cidade e Estado de nossos parceiros em nosso banco de dados, esses dados podem ser adquiridos nesse ws https://viacep.com.br/ws/CEP_DO_PARCEIRO/json/;
-- Envio de boas vindas para os novos parceiros (o envio de email não precisa acontecer de fato, pode ser apenas logado);
-- Utilizar docker, seria legal subir o seu sistema com apenas uma linha de comando.
-- Interface em HTML
-- Documentação dinamica (Swagger/Openapi)
+O Sqlite está sendo utilizado para mock da base e realização de testes do App.
 
-## Tecnologias usadas
+O banco relacional MariaDB está sendo utilizado para armazenar os dados de clientes e endereços.
 
-- Preferencialmente utilizar Python como linguagem;
+## Configuração do ambiente
 
-## Dicas
+Para iniciar o uso do sistema é necessário possuir o docker e o docker compose em seu ambiente. As portas de conexão utilizadas pelos contêineres por default são:
 
-- Aproveite os recursos das ferramentas que você está usando. Diversifique e mostre que você domina cada uma delas;
-- Tente escrever seu código o mais claro e limpo possível. Código deve ser legível assim como qualquer texto dissertativo;
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes;
-- OBS: Não precisa criar um front-end para aplicação.
+- FastAPI :9092
+- MySQL :3306
 
-## Objetivo
+É necessário manter essas portas disponíveis em seu ambiente para que a rede utilizada pelos contêineres seja criada e funcione corretamente.
 
-- O objetivo é avaliar sua experiência em escrever código de fácil manutenção e alta coesão.
+Baixe os arquivos deste repositório e acesse o diretório que será criado.
 
-## Envio
+Execute o comando para inicar os serviços por meio do docker e aguarde alguns minutos. Se não quiser observar os logs das operações que estão sendo realizadas no uso do sistema, adicione ao final do comando a opção -d. Após a configuraçã do ambiente você será capaz de acessar o dashboard na URL: http://0.0.0.0:9092
 
-Para nos enviar seu código, faça um fork desse repositório na sua conta pessoal e nos envie um pull-request (conta pessoal).
+```bash
+$ docker-compose up
+```
+## Documentação
 
+É possível acessar a documentação gerada para a aplicação nas URL's http://0.0.0.0:9092/docs e http://0.0.0.0:9092/redoc
 
-Qualquer dúvida técnica, envie uma mensagem para recrutamento@solfacil.com.br.
+### Testes
 
-Você terá 7 dias para fazer esse teste, a partir do recebimento deste desafio. Sucesso!
+Para executar os testes criados para o sistema é necessário acessar o contâiner que roda o App e executar o comando para iniciar os testes.
+
+```bash
+$ docker exec -it nome_do_container bash
+$ pytest -v
+```
+
+Um grande abraço, aproveitem... :)
