@@ -12,7 +12,6 @@
             <div class="d-none d-md-block">
                 <a class="navbar-brand" href="/">
                     <img src="{{ url_for('static', path='/223438.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Import Tools">
-                    Import Tools
                 </a>
             </div>
             <div class="d-block d-sm-none">
@@ -25,8 +24,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a href="/" class="nav-item nav-link text-primary">Currency Converter</a>
-                    <!-- a href="/manage-currency-codes" class="nav-item nav-link text-primary text-uppercase">Manage Currency Codes</a -->
+                    <a href="/" class="nav-item nav-link text-primary">Customer Partners Import Tools</a>
                 </div>
             </div>
         </div>
@@ -84,7 +82,18 @@
                     method: 'POST',
                     body: formData
                 })
-                .then(result => result.json())
+                .then((result) => {
+                    if (result.status == 415) {
+                        alertDiv.innerHTML = '<div class="alert alert-warning alert-dismissible" role="alert" id="alert">\
+                                        File format invalid, please select a CSV file type\
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\
+                                    </div>';
+                        alertDiv.style.display = 'block';
+                        displayLoading();
+                    } else {
+                        return result.json();
+                    }
+                })
                 .catch(error => { console.log(error); });
             } else {
                 alertDiv.innerHTML = '<div class="alert alert-warning alert-dismissible" role="alert" id="alert">\
@@ -127,7 +136,7 @@
                                 dangerMessages += `Error in file line ${key}: ${value}<br>`
                             }
                             if (element.includes("warning") && value) {
-                                warningMessages += `Please check file line ${key}: ${value}<br>`
+                                warningMessages += `Please check line ${key} in file: ${value}<br>`
                             }
                             if (element.includes("success") && value) {
                                 successMessages += `${value}<br>`
