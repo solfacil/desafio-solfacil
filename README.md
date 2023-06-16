@@ -4,6 +4,8 @@ Criação de API e interface web para importação de clientes em arquivo no for
 
 O sistema utiliza uma API externa com para obtenção de dados de endereço por meio de um CEP [Viacep](https://viacep.com.br/)
 
+![Captura de tela de 2023-06-16 15-48-24](https://github.com/ALCTorres/desafio-solfacil/assets/32714168/3f0d7a97-ff51-493f-8bed-7853d5873afc)
+
 ## Apresentação do problema
 
 Nosso cliente interno precisa atualizar rotineiramente os dados de nossos parceiros. O problema acontece que para atualizar, ele precisa entrar na página de edição de cada um dos parceiros. Isso é um trabalho muito tedioso e demorado.
