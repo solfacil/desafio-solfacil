@@ -1,0 +1,12 @@
+from enum import IntEnum
+
+
+class InternalCode(IntEnum):
+    SUCCESS = 0
+    INVALID_PARAMS = 10
+    INVALID_AUTHENTICATION = 20
+    INTERNAL_SERVER_ERROR = 30
+    UNAUTHORIZED = 40
+    DATA_VALIDATION_ERROR = 50
+    DATA_NOT_FOUND = 51
+    DATA_ALREADY_EXISTS = 52
