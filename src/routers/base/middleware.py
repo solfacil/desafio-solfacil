@@ -20,7 +20,6 @@ class Middleware:
         response = await cls.response_handler(request=request, call_next=call_next)
         process_time = time() - start_time
         response.headers["X-Process-Time"] = str(process_time)
-
         return response
 
     @staticmethod
@@ -32,11 +31,9 @@ class Middleware:
 
         except Exception as ex:
             loglifos.error(exception=ex, msg=str(ex))
-
             response = ResponseModel(
                 success=False, internal_code=InternalCode.INTERNAL_SERVER_ERROR
             ).build_http_response(status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
 
         finally:
-
             return response
