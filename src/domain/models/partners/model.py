@@ -8,6 +8,7 @@ from src.domain.models.orm_base.model import Base
 
 class PartnerModel(Base):
     __tablename__ = "partners"
+    __table_args__ = {'extend_existing': True}
     cnpj: Mapped[str] = mapped_column(String(14), primary_key=True)
     company_name: Mapped[str] = mapped_column(String(100))
     fantasy_name: Mapped[str] = mapped_column(String(100))
