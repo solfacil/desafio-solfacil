@@ -1,31 +1,20 @@
-from datetime import datetime
+from typing import Optional
 
-from sqlalchemy import ForeignKey, func
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.domain.models.orm_base.model import Base
 
 
-class PartnerModel(Base):
-    __tablename__ = "partners"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
-    cnpj: Mapped[str]
-    company_name: Mapped[str]
-    fantasy_name: Mapped[str]
-    phone: Mapped[str]
-    email: Mapped[str]
-
-
 class AddressModel(Base):
-    __tablename__ = "address"
+    __tablename__ = "addresses"
     id: Mapped[int] = mapped_column(primary_key=True)
-    partner_id: Mapped[int] = mapped_column(ForeignKey("partners.id"))
-    address: Mapped[str]
-    number: Mapped[str]
-    complement: Mapped[str]
-    city: Mapped[str]
-    state: Mapped[str]
-    zipcode: Mapped[str]
-    
+    address: Mapped[str] = mapped_column(String(250))
+    complement: Mapped[Optional[str]] = mapped_column(String(100))
+    neighborhood: Mapped[Optional[str]] = mapped_column(String(30))
+    city: Mapped[str] = mapped_column(String(20))
+    state: Mapped[str] = mapped_column(String(2))
+    partner_cnpj: Mapped[int] = mapped_column(ForeignKey("partners.cnpj", ondelete="CASCADE"))
+    # zipcode: Mapped[str] = mapped_column(primary_key=True)
+    # partner_id: Mapped[int] = mapped_column(ForeignKey("partners.id", ondelete="CASCADE"))
+    # zipcode: Mapped["PartnerModel"] = relationship(back_populates="zipcode")

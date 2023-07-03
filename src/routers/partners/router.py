@@ -1,27 +1,40 @@
-from fastapi import APIRouter, Response
+from http import HTTPStatus
+from typing import List
+
+from fastapi import APIRouter, Response, UploadFile
 
 from src.domain.enums.http_response.internal_code import InternalCode
 from src.domain.models.http_response.model import ResponseModel
-from src.domain.validators.partners.validator import PartnersValidator
+from src.domain.validators.request.csv.validator import CsvValidator
+from src.domain.validators.response.partners.validator import PartnersResponse
+from src.services.partners.service import PartnersService
 
-from http import HTTPStatus
 
 class PartnersRouter:
 
     __router = APIRouter(prefix="/api/v1", tags=["Partners Loader"])
 
 
-    @classmethod
-    def get_partners_router(cls):
-        return  cls.__router
+    @staticmethod
+    def get_partners_router():
+        return  PartnersRouter.__router
+
 
     @staticmethod
-    @__router.put("/partners", response_model="xxx")
-    async def load_partners(payload: PartnersValidator) -> Response:
-        message = await PartnersService.load_from_csv(payload=payload)
-        # message = "Partners uploaded successfully."
+    @__router.post("/partners/uploadfile")
+    async def create_upload_file(file: UploadFile) -> Response:
+        CsvValidator(file=file)
+        message = await PartnersService.load_from_csv_file(file=file)
         response = ResponseModel(
             message=message, internal_code=InternalCode.SUCCESS, success=True
         ).build_http_response(status_code=HTTPStatus.OK, )
         return response
 
+    @staticmethod
+    @__router.get("/partners", response_model=List[PartnersResponse])
+    async def create_upload_file() -> Response:
+        result = await PartnersService.get_all_partners()
+        response = ResponseModel(
+            result=result, internal_code=InternalCode.SUCCESS, success=True
+        ).build_http_response(status_code=HTTPStatus.OK, )
+        return response

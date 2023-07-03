@@ -1,5 +1,5 @@
 from src.routers.base.app import AmaterasuApp
-
+from src.routers.partners.router import PartnersRouter
 class BaseRouter:
 
     app = AmaterasuApp.get_app()
@@ -13,4 +13,6 @@ class BaseRouter:
 
     @classmethod
     def __include_xx_router(cls):
-        pass
+        router = PartnersRouter.get_partners_router()
+        cls.app.include_router(router)
+        return cls.app

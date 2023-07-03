@@ -1,0 +1,12 @@
+from pydantic import BaseModel, constr
+
+
+class PartnersResponse(BaseModel):
+    cnpj: str
+    company_name: str
+    fantasy_name: str
+    phone: str
+    email: str
+    zipcode: str
+
+# my_csv = "Q05QSixSYXrDo28gU29jaWFsLE5vbWUgRmFudGFzaWEsVGVsZWZvbmUsRW1haWwsIENFUAoxNi40NzAuOTU0LzAwMDEtMDYsU29sIEV0ZXJubyxTb2wgRXRlcm5vIExUREEsKDIxKSA5ODIwNy05OTAxLGF0ZW5kaW1lbnRvQHNvbGV0ZXJuby5jb20sMjI3ODMtMTE1CjE5LjQ3OC44MTkvMDAwMS05NyxTb2wgZGEgTWFuaMOjLFNvbCBkYSBNYW5ow6MgTFREQSwoMjEpIDk4MjA3LTk5MDIsYXRlbmRpbWVudG9zb2xkYW1hbmhhLmNvbSw2OTMxNC02OTAKMTIuNDczLjc0Mi8wMDAxLTEzLFNvbCBGb3J0ZSxTb2wgRm9ydGUgTFREQSwyMTk4MjA3OTkwMyxhdGVuZGltZW50b3NvbGZvcnRlLmNvbSw4NDA0My0xNTAKMjE0LjAwNC45MjAtOTIsU29sIEJyaWxoYW50ZSwsKDIxKSA4MjA3LTk5MDIsYXRlbmRpbWVudG9Ac29sZXRlcm5vLmNvbSw1NzA3MS0xODYKMjI3ODMtMTE1LFNvbCBFbmVyZ2lhLFNvbCBFbmVyZ2lhIExUREEsLGF0ZW5kaW1lbnRvQHNvbGVuZXJnaWEuY29tLDEyOTAwLTMwMw=="

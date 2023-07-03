@@ -13,6 +13,10 @@ loglifos = "^0.1.0"
 sqlalchemy = {extras = ["asyncio"], version = "^2.0.17"}
 python-decouple = "^3.8"
 asyncpg = "^0.27.0"
+pandas = "^2.0.3"
+uvicorn = "^0.22.0"
+python-multipart = "^0.0.6"
+strenum = "^0.4.15"
 
 
 [build-system]
