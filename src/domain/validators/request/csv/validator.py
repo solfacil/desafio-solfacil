@@ -8,9 +8,9 @@ from src.domain.exceptions.domain.exception import InvalidFileTypeError
 class CsvValidator(BaseModel):
     file: UploadFile
 
-    @validator('file')
+    @validator("file")
     def validate_file_extension(cls, file: UploadFile):
-        file_name_splited = file.filename.lower().split('.')
+        file_name_splited = file.filename.lower().split(".")
         extension = file_name_splited[-1]
         if not extension == FileExtension.CSV:
             raise InvalidFileTypeError()

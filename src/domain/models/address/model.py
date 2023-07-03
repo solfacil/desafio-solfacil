@@ -14,7 +14,6 @@ class AddressModel(Base):
     neighborhood: Mapped[Optional[str]] = mapped_column(String(30))
     city: Mapped[str] = mapped_column(String(20))
     state: Mapped[str] = mapped_column(String(2))
-    partner_cnpj: Mapped[int] = mapped_column(ForeignKey("partners.cnpj", ondelete="CASCADE"))
-    # zipcode: Mapped[str] = mapped_column(primary_key=True)
-    # partner_id: Mapped[int] = mapped_column(ForeignKey("partners.id", ondelete="CASCADE"))
-    # zipcode: Mapped["PartnerModel"] = relationship(back_populates="zipcode")
+    partner_cnpj: Mapped[int] = mapped_column(
+        ForeignKey("partners.cnpj", ondelete="CASCADE")
+    )

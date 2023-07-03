@@ -10,8 +10,6 @@ from src.services.data_frame.service import DataFrameService
 
 
 class PartnersService:
-
-
     @classmethod
     async def load_from_csv_file(cls, file: UploadFile) -> str:
         partners_df = await DataFrameService.convert_csv_to_df(spooled_file=file.file)
@@ -23,14 +21,15 @@ class PartnersService:
 
     @staticmethod
     async def get_partner_model_list(partners_df) -> List[PartnerModel]:
-        partner_model_list = [ PartnerModel(**row.to_dict()) for index, row in partners_df.iterrows()]
+        partner_model_list = [
+            PartnerModel(**row.to_dict()) for index, row in partners_df.iterrows()
+        ]
         return partner_model_list
-
 
     @staticmethod
     async def get_all_partners() -> List[dict]:
         all_partners = await PartnersRepository.get_all_partners()
-        partners_validated = [PartnersResponse(**partner.__dict__).dict() for partner in all_partners]
+        partners_validated = [
+            PartnersResponse(**partner.__dict__).dict() for partner in all_partners
+        ]
         return partners_validated
-
-

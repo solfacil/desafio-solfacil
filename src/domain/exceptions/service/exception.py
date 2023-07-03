@@ -10,7 +10,14 @@ class Base64DecodeError(ServiceException):
         self.status_code = HTTPStatus.BAD_REQUEST
         self.internal_code = InternalCode.DATA_DECODER_ERROR
         self.success = False
-        super().__init__(self.msg, self.status_code, self.internal_code, self.success, *args, **kwargs)
+        super().__init__(
+            self.msg,
+            self.status_code,
+            self.internal_code,
+            self.success,
+            *args,
+            **kwargs
+        )
 
 
 class ErrorTryingToConvertCsv(ServiceException):
@@ -19,4 +26,11 @@ class ErrorTryingToConvertCsv(ServiceException):
         self.status_code = HTTPStatus.BAD_REQUEST
         self.internal_code = InternalCode.DATA_CONVERTER_ERROR
         self.success = False
-        super().__init__(self.msg, self.status_code, self.internal_code, self.success, *args, **kwargs)
+        super().__init__(
+            self.msg,
+            self.status_code,
+            self.internal_code,
+            self.success,
+            *args,
+            **kwargs
+        )

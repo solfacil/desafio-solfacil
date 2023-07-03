@@ -1,18 +1,16 @@
-import base64
 from typing import BinaryIO, NoReturn
 
 import loglifos
 from pandas import DataFrame, read_csv
 
-from src.domain.enums.data_frame.regex import Replace
 from src.domain.enums.data_frame.filter import ColumnsName, CnpjQuery
+from src.domain.enums.data_frame.regex import Replace
 from src.domain.exceptions.service.exception import ErrorTryingToConvertCsv
 
 loglifos.set_config(log_level=loglifos.DEBUG)
 
 
 class DataFrameService:
-
     @classmethod
     async def convert_csv_to_df(cls, spooled_file: BinaryIO) -> DataFrame:
         try:
@@ -32,11 +30,11 @@ class DataFrameService:
     @staticmethod
     async def treat_partners_df(df: DataFrame) -> DataFrame:
         all_columns = [column for column in ColumnsName]
-        df = df.set_axis(all_columns, axis='columns')
+        df = df.set_axis(all_columns, axis="columns")
 
         select_columns = [ColumnsName.CNPJ, ColumnsName.PHONE, ColumnsName.ZIPCODE]
         df[select_columns] = df[select_columns].replace(
-            to_replace=Replace.SPECIAL_CHARACTERS, value='', regex=True
+            to_replace=Replace.SPECIAL_CHARACTERS, value="", regex=True
         )
 
         return df

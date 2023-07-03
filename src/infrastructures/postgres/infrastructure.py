@@ -6,12 +6,12 @@ from src.domain.models.orm_base.model import Base
 
 
 class PostgresInfrastructure:
-
     async_engine = create_async_engine(
         config("POSTGRES_URL"), echo=True, poolclass=NullPool, pool_pre_ping=True
     )
-    async_session = async_sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
-
+    async_session = async_sessionmaker(
+        async_engine, class_=AsyncSession, expire_on_commit=False
+    )
 
     @classmethod
     async def create_tables(cls):

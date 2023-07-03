@@ -11,14 +11,11 @@ from src.services.partners.service import PartnersService
 
 
 class PartnersRouter:
-
     __router = APIRouter(prefix="/api/v1", tags=["Partners Loader"])
-
 
     @staticmethod
     def get_partners_router():
-        return  PartnersRouter.__router
-
+        return PartnersRouter.__router
 
     @staticmethod
     @__router.post("/partners/uploadfile")
@@ -27,7 +24,9 @@ class PartnersRouter:
         message = await PartnersService.load_from_csv_file(file=file)
         response = ResponseModel(
             message=message, internal_code=InternalCode.SUCCESS, success=True
-        ).build_http_response(status_code=HTTPStatus.OK, )
+        ).build_http_response(
+            status_code=HTTPStatus.OK,
+        )
         return response
 
     @staticmethod
@@ -36,5 +35,7 @@ class PartnersRouter:
         result = await PartnersService.get_all_partners()
         response = ResponseModel(
             result=result, internal_code=InternalCode.SUCCESS, success=True
-        ).build_http_response(status_code=HTTPStatus.OK, )
+        ).build_http_response(
+            status_code=HTTPStatus.OK,
+        )
         return response
