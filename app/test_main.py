@@ -35,9 +35,10 @@ def test_read_inexistent_customer():
     assert response.json() == {"detail": "Customer not found"}
 
 def test_import_customers():
+    file = open("./app/templates/static/emptyfile.csv", "rb")
     response = client.post(
         "/import-customers-from-csv/",
-        files={"file": ("filename", open("./app/templates/static/emptyfile.csv", "rb"), "image/jpeg")}
+        files={"file": ("filename", file, "image/jpeg")}
     )
 
     assert response.status_code == 422
@@ -46,7 +47,7 @@ def test_import_customers():
 
     response = client.post(
         "/import-customers-from-csv/",
-        files={"upload_file": ("filename", open("./app/templates/static/exemplo.csv", "rb"), "image/jpeg")}
+        files={"upload_file": ("filename", file, "image/jpeg")}
     )
 
     assert response.status_code == 415
@@ -56,7 +57,7 @@ def test_import_customers():
 
     response = client.post(
         "/import-customers-from-csv/",
-        files={"upload_file": ("filename", open("./app/templates/static/emptyfile.csv", "rb"), "text/csv")}
+        files={"upload_file": ("filename", file, "text/csv")}
     )
 
     assert response.status_code == 200
@@ -67,7 +68,7 @@ def test_import_customers():
 
     response = client.post(
         "/import-customers-from-csv/",
-        files={"upload_file": ("filename", open("./app/templates/static/exemplo.csv", "rb"), "text/csv")}
+        files={"upload_file": ("filename", file, "text/csv")}
     )
 
     assert response.status_code == 200
@@ -75,6 +76,7 @@ def test_import_customers():
     assert "detail" in data
     assert "status" in data["detail"] and "messages" in data["detail"]
     assert data["detail"]["status"] == "SUCCESS"
+    file.close()
 
 def test_list_customers():
     response = client.get("/list-customers/")

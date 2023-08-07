@@ -1,7 +1,6 @@
 fastapi
 pydantic
 uvicorn
-mysqlclient
 python-multipart
 sqlalchemy
 jinja2
