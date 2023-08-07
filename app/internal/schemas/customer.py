@@ -3,8 +3,9 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from pycpfcnpj import cpfcnpj
 from email_validator import validate_email, EmailNotValidError
-from ...database.models import adresses, customers
-from .address import Address
+
+from app.database.models import adresses, customers
+from app.internal.schemas.address import Address
 
 
 class Customer(BaseModel):
@@ -23,7 +24,7 @@ class Customer(BaseModel):
     enderecos: list[Address] = []
 
 
-def check_customer_data(customer):
+def check_customer_data(customer: dict):
     customer_data = {}
     customer_messages = {}
     if any(customer.values()) == True and "CNPJ" in customer and "Razão Social" in customer:
@@ -66,23 +67,23 @@ def check_customer_data(customer):
     return customer_data, customer_messages
 
 
-async def get_customer_by_id(db: Session, customer_id: int):
+def get_customer_by_id(db: Session, customer_id: int):
     return db.query(customers.Customers).filter(customers.Customers.cliente_id == customer_id).first()
 
 
-async def get_customer_by_name(db: Session, customer_name: str):
+def get_customer_by_name(db: Session, customer_name: str):
     return db.query(customers.Customers).filter(customers.Customers.razao_social == customer_name).first()
 
 
-async def get_customer_address_by_cep(db: Session, cep: str):
+def get_customer_address_by_cep(db: Session, cep: str):
     return db.query(adresses.Adresses).filter(adresses.Adresses.cep == cep).first()
 
 
-async def get_customers(db: Session, skip: int = 0, limit: int = 100):
+def get_customers(db: Session, skip: int = 0, limit: int = 100):
     return db.query(customers.Customers).join(adresses.Adresses).offset(skip).limit(limit).all()
 
 
-async def save_customer(db: Session, customer: dict):
+def save_customer(db: Session, customer: dict):
     db_customer = customers.Customers(**customer)
     customer_data = get_customer_by_name(db, customer["razao_social"])
     if customer_data != None:

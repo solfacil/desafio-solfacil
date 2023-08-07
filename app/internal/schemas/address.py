@@ -1,8 +1,9 @@
 from typing import Optional
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from ...database.models.adresses import Adresses
-from ...pkg.utils import call_external_cep_api
+
+from app.database.models.adresses import Adresses
+import app.pkg.utils as Utils
 
 
 class Address(BaseModel):
@@ -10,7 +11,7 @@ class Address(BaseModel):
         from_attributes = True
 
     endereco_id: Optional[int] = None
-    cep: Optional[str] = None
+    cep: str
     logradouro: Optional[str] = None
     complemento: Optional[str] = None
     bairro: Optional[str] = None
@@ -22,7 +23,7 @@ class Address(BaseModel):
 async def get_address_from_external_cep_api(cep: int):
     address_data = None
     if len(cep) == 8:
-        address_search = await call_external_cep_api(cep)
+        address_search = await Utils.call_external_cep_api(cep)
         if address_search:
             address_data = {"cep": cep, "logradouro": address_search['logradouro'], "complemento": address_search['complemento'],
                             "bairro": address_search['bairro'], "localidade": address_search['localidade'], "uf": address_search['uf'], "ibge": address_search['ibge']}
@@ -45,7 +46,6 @@ def save_address(db: Session, address: dict):
         db.add(db_address)
         db.commit()
 
-    db.refresh(db_address)
     return db_address
 
 

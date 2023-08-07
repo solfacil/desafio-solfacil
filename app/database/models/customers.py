@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Mapped
 
 from app.database.models.adresses import Adresses
-from ..connection import Base
+from app.database.connection import Base
 
 
 class Customers(Base):

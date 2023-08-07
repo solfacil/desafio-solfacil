@@ -1,5 +1,7 @@
 import logging
 import httpx
+import csv
+import codecs
 from rich.console import Console
 from rich.logging import RichHandler
 
@@ -23,3 +25,6 @@ async def call_external_cep_api(zip_code):
         address_data = address.json()
 
     return address_data
+
+def read_csv_file(filename):
+    return csv.DictReader(codecs.iterdecode(filename, 'utf-8'))
