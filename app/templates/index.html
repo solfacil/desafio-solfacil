@@ -79,7 +79,7 @@
             if (inputFile != null && inputFile.files.length > 0) {
                 const formData = new FormData();
                 formData.append('upload_file', inputFile.files[0]);
-                return fetch('/import-customers-from-csv/', 
+                return fetch('/api/v1/partners/customers/', 
                 {
                     method: 'POST',
                     body: formData
