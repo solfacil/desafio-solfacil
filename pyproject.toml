@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "amaterasu"
+version = "0.1.0"
+description = ""
+authors = ["Vinicius Reis <v_reis@outlook.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.98.0"
+httpx = "^0.24.1"
+loglifos = "^0.1.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.17"}
+python-decouple = "^3.8"
+asyncpg = "^0.27.0"
+pandas = "^2.0.3"
+uvicorn = "^0.22.0"
+python-multipart = "^0.0.6"
+strenum = "^0.4.15"
+black = "^23.3.0"
+pytest-asyncio = "^0.21.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
